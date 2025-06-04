@@ -1,0 +1,6 @@
+*.zip
+*.rar
+*.pdf
+.obsidian/themes
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json

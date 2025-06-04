@@ -1,0 +1,11 @@
+{
+  "cssTheme": "",
+  "enabledCssSnippets": [
+    "dashboard",
+    "dashboard-ReadLineLength",
+    "snippet"
+  ],
+  "baseFontSizeAction": true,
+  "theme": "obsidian",
+  "baseFontSize": 18
+}
