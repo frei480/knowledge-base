@@ -1,3 +1,9 @@
+---
+tags:
+  - javascript
+  - JSON
+---
+
 1. функция асинхронно загружает информацию с web-сервера, при первичной загрузке так же вызывается по событию onload  в теге `<body onload=load_data()>` со значением параметра по умолчанию requestURL:
 ```js
 async function load_data(requestURL="http://127.0.0.1:8000/invest/10000/1000/3/")
