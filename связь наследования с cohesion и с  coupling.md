@@ -58,7 +58,7 @@ class UserDB extends Database {
 **Риск**: При изменении сигнатуры `save()` в `Database` код `UserDB` сломается.
 
 **Решение**:  
-- **Композиция вместо наследования** (принцип SOLID):  
+- **[[Принцип Composition over Inheritance|Композиция вместо наследования]]** (принцип [[SOLID принципы|SOLID]]):  
 ```java
 class UserDB {
     private final Database db; // Низкая связанность
