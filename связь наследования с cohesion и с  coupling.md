@@ -91,11 +91,11 @@ class Square extends Shape { ... }
 ---
 
 ### 4. **Критические принципы проектирования**
-| Принцип                     | Влияние на Cohesion/Coupling       | Пример с наследованием          |
-|-----------------------------|-----------------------------------|----------------------------------|
-| **LSP (Liskov Substitution)** | Увеличивает связность иерархии    | `Rectangle` и `Square` должны быть взаимозаменяемы |
-| **Composition over Inheritance** | Снижает coupling                | Замена `extends` на `private final` поле |
-| **ISP (Interface Segregation)** | Повышает cohesion               | Разделение `Flyable`, `Swimmable` вместо общего `Animal` |
+| Принцип                                                   | Влияние на Cohesion/Coupling       | Пример с наследованием          |
+| --------------------------------------------------------- | ------------------------------ | -------------------------------------------------------- |
+| **[[SOLID принципы#^90e45b\|LSP (Liskov Substitution)]]** | Увеличивает связность иерархии    | `Rectangle` и `Square` должны быть взаимозаменяемы |
+| **Composition over Inheritance**                          | Снижает coupling                | Замена `extends` на `private final` поле |
+| **ISP (Interface Segregation)**                           | Повышает cohesion               | Разделение `Flyable`, `Swimmable` вместо общего `Animal` |
 
 ---
 
