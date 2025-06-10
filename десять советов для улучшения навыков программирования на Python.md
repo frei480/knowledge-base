@@ -342,7 +342,7 @@ response = httpx.get("https://api.github.com")
 print(response.status_code)  # Output: 200
 print(response.json())  # Output: Parsed JSON response
 ```
--  Пример использования pandas для манипулирования данными 
+-  Пример использования pandas для манипулирования данными
 ```python
 import pandas as pd
 
@@ -384,7 +384,7 @@ print(model.predict([[5]]))
 [5.]
 ```
 
-- matplotlib: Построение графиков и диаграмм. 
+- matplotlib: Построение графиков и диаграмм.
 - 
 ```python
 import matplotlib.pyplot as plt
@@ -479,7 +479,7 @@ perform_task(file_logger)  # Logs to a file.
 
 ### Десятый совет: Использование классов и функций
 
-• Классы подходят для объединения поведения и данных. 
+• Классы подходят для объединения поведения и данных.
 ```python
 from decimal import Decimal
 
