@@ -64,7 +64,7 @@ public static Variable UpdateOrCreate(Variable existingVariable, IEnumerable<obj
 }
 ```
 
-### Описание метода:
+# Описание Метода:
 1. **Класс `Variable`**:
    - Содержит свойства `StringValue` и `DoubleValue`.
    - Конструкторы гарантируют, что объект будет иметь значение только одного типа (string или double).
@@ -81,7 +81,7 @@ public static Variable UpdateOrCreate(Variable existingVariable, IEnumerable<obj
      - Если нет double, но есть string, возвращается `Variable` с этим string.
      - Если параметры отсутствуют или все null, возвращается `existingVariable`.
 
-### Примеры использования:
+# Примеры Использования:
 ```csharp
 // Пример 1: Создание нового объекта с double
 var parameters1 = new object[] { null, "text", 3.14 };

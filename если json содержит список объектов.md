@@ -8,7 +8,7 @@ tags:
 
 ---
 
-### 1. Модель данных
+# 1. Модель Данных
 Допустим, сервер возвращает JSON вида:
 ```json
 [
@@ -37,7 +37,7 @@ public class User
 
 ---
 
-### 2. Пример асинхронного метода
+# 2. Пример Асинхронного Метода
 Модифицируем предыдущий метод, указав тип `List<User>` (или `IEnumerable<User>`, `User[]`):
 
 ```csharp
@@ -66,7 +66,7 @@ public static async Task<List<T>> GetListAsync<T>(string url)
 
 ---
 
-### 3. Использование
+# 3. Использование
 ```csharp
 try
 {
@@ -85,7 +85,7 @@ catch (HttpRequestException ex)
 
 ---
 
-### 4. Особенности работы с коллекциями
+# 4. Особенности Работы С Коллекциями
 
 1. **Типы коллекций:**
    ```csharp
@@ -115,7 +115,7 @@ catch (HttpRequestException ex)
 
 ---
 
-### 5. Полный пример с обработкой ошибок
+# 5. Полный Пример С Обработкой Ошибок
 ```csharp
 public static async Task Main()
 {
@@ -151,7 +151,7 @@ public static async Task Main()
 
 ---
 
-### 6. Важные нюансы
+# 6. Важные Нюансы
 
 1. **Производительность:** Для больших коллекций используйте:
    ```csharp
@@ -200,7 +200,7 @@ public static async Task Main()
 
 ---
 
-### 7. Альтернатива: ручная десериализация
+# 7. Альтернатива: Ручная Десериализация
 Если нужен полный контроль над процессом:
 ```csharp
 using var response = await client.GetAsync(url);
@@ -215,7 +215,7 @@ var users = JsonSerializer.Deserialize<List<User>>(jsonString, options);
 
 ---
 
-### 8. Тестирование
+# 8. Тестирование
 Пример теста с Moq:
 ```csharp
 [Test]
