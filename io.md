@@ -1,8 +1,4 @@
-::: {#io}
-::: currentmodule
-pandas
-:::
-:::
+
 
 # IO Tools (text, CSV, HDF5, \…)
 
@@ -372,7 +368,7 @@ skip_blank_lines : boolean, default `True`
 
 parse_dates : boolean or list of ints or names or list of lists or dict, default `False`.
 
-: -   If `True` -\> try parsing the index.
+: - If `True` -\> try parsing the index.
     - If `[1, 2, 3]` -\> try parsing columns 1, 2, 3 each as a
         separate date column.
     - If `[[1, 3]]` -\> combine columns 1 and 3 and parse as a single
@@ -2039,12 +2035,12 @@ A `Series` or `DataFrame` can be converted to a valid JSON string. Use
 
     `Series`:
 
-    : -   default is `index`
+    : - default is `index`
         - allowed values are {`split`, `records`, `index`}
 
     `DataFrame`:
 
-    : -   default is `columns`
+    : - default is `columns`
         - allowed values are {`split`, `records`, `index`, `columns`,
             `values`, `table`}
 
@@ -2278,12 +2274,12 @@ is `None`. To explicitly force `Series` parsing, pass `typ=series`
 
     Series :
 
-    : -   default is `index`
+    : - default is `index`
         - allowed values are {`split`, `records`, `index`}
 
     DataFrame
 
-    : -   default is `columns`
+    : - default is `columns`
         - allowed values are {`split`, `records`, `index`, `columns`,
             `values`, `table`}
 
@@ -6278,12 +6274,12 @@ role="func"}.
 | id | Date | Col_1 | Col_2 | Col_3 |
 +=====+============+=======+=======+=======+
 | 26 | 2012-10-18 | > X | > | True |
-| |            | |  25.7 | |
+| | | | 25.7 | |
 +-----+------------+-------+-------+-------+
 | 42 | 2012-10-19 | > Y | -12.4 | False |
 +-----+------------+-------+-------+-------+
 | 63 | 2012-10-20 | > Z | > | True |
-| |            | |  5.73 | |
+| | | | 5.73 | |
 +-----+------------+-------+-------+-------+
 
 ::: ipython
@@ -6338,32 +6334,32 @@ listing of types available in different databases and pandas backends:
 | float32 | float32 | REAL | REAL |
 +-----------------+-----------------------+----------------+---------+
 | float64 | float64 | DOUBLE | REAL |
-| |                       | PRECISION |         |
+| | | PRECISION | |
 +-----------------+-----------------------+----------------+---------+
 | object | string | TEXT | TEXT |
 +-----------------+-----------------------+----------------+---------+
-| bool | `bool_` | BOOLEAN |         |
+| bool | `bool_` | BOOLEAN | |
 +-----------------+-----------------------+----------------+---------+
-| d | timestamp(us) | TIMESTAMP |         |
-| atetime64\[ns\] | |                | |
+| d | timestamp(us) | TIMESTAMP | |
+| atetime64\[ns\] | | | |
 +-----------------+-----------------------+----------------+---------+
-| date | timestamp(us,tz) | TIMESTAMPTZ |         |
-| time64\[ns,tz\] | |                | |
+| date | timestamp(us,tz) | TIMESTAMPTZ | |
+| time64\[ns,tz\] | | | |
 +-----------------+-----------------------+----------------+---------+
-| | date32 | DATE |         |
+| | date32 | DATE | |
 +-----------------+-----------------------+----------------+---------+
-| | mo | INTERVAL |         |
-| | nth_day_nano_interval | |         |
+| | mo | INTERVAL | |
+| | nth_day_nano_interval | | |
 +-----------------+-----------------------+----------------+---------+
 | | binary | BINARY | BLOB |
 +-----------------+-----------------------+----------------+---------+
-| | decimal128 | DECIMAL[^1] |         |
+| | decimal128 | DECIMAL[^1] | |
 +-----------------+-----------------------+----------------+---------+
-| | list | ARRAY[^2] |         |
+| | list | ARRAY[^2] | |
 +-----------------+-----------------------+----------------+---------+
 | | struct | COMPOSITE TYPE | |
-| |                       | |         |
-| |                       | : [^3] |         |
+| | | | |
+| | | : [^3] | |
 +-----------------+-----------------------+----------------+---------+
 
 **Footnotes**

@@ -1,8 +1,10 @@
 ---
 tags:
   - python
+  - rust
 ---
 пересказ видео https://www.youtube.com/watch?v=lyG6AKzu4ew
+Автор: Arjan Egges
 Сочетание Rust и Python: Лучшее из Обоих Миров?
 
 00:00 Введение
@@ -14,7 +16,59 @@ tags:
 00:27 Настройка проекта
 
 • Пример библиотеки на Rust с простыми функциями.
-• Необходимость исходной папки, файла cargo.toml и файла проекта.
+```rust
+use pyo3::prelude::*;
+///выворд суммы двух чисел в виде строки
+#[pyfunction]
+fn sum_as_string(a: usize, b: usize) -> PyResult<String>{
+	Ok((a+b).to_string())
+}
+#[pymodule]
+fn pyo3_rust(_py: Python, m: &PyModule) -> PyResult<()> {
+	m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
+	Ok(())
+}
+```
+• Необходимость исходной папки, файла `cargo.toml` и файла проекта `pyproject.toml`.
+```toml
+#cargo.toml
+[package]
+name = "pyo3_rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "pyo3_rust"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = "0.19.0"
+```
+
+```toml
+#pyproject.toml
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "pyo3_rust"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dynamic = ["version"]
+
+[dependencies]
+maturin = "1.4.0"
+rustimport = "1.4.0"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+```
+
 • Использование pyo3 для создания модулей Python на основе Rust.
 
 01:10 Pyo3 и его особенности
@@ -32,6 +86,17 @@ tags:
 03:22 Использование Maturin
 
 • Maturin помогает создавать и развертывать модули Python на основе Rust.
+```shell
+pip install maturin
+```
+создание проекта:
+```shell
+maturin init
+```
+компиляция кода:
+```shell
+maturin develop
+```
 • Сравнение с Poetry и использование файла project.toml.
 • Maturin поддерживает другие функции, такие как CFI и CPython.
 
@@ -57,6 +122,6 @@ tags:
 
 • Автор планирует сделать еще одно видео о Rust, где покажет, как он это сделал и какие уроки извлек.
 • Считает Rust приятным языком программирования, но не думает, что он заменит Python.
-• Рекомендует посмотреть следующее видео для более глубокого погружения в Rust.
+• Рекомендует посмотреть следующее [[Введение в программирование на Rust для любителей Python|видео]] для более глубокого погружения в Rust.
 • Благодарит за просмотр и прощается до следующего раза.
 
