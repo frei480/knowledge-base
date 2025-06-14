@@ -7,29 +7,29 @@ tags:
 
 ---
 
-### **Основные компоненты**
-1. **`DependencyContext`**  
+# **Основные компоненты**
+1. **`DependencyContext`**
    Главный класс, содержащий информацию о зависимостях приложения. Данные берутся из файла **`<app>.deps.json`**, который генерируется при сборке проекта.
 
-2. **`DependencyContext.Default`**  
+2. **`DependencyContext.Default`**
    Статическое свойство, возвращающее контекст зависимостей текущего приложения.
 
-3. **`CompilationLibrary` и `RuntimeLibrary`**  
+3. **`CompilationLibrary` и `RuntimeLibrary`**
    Классы, описывающие зависимости:
    - `CompilationLibrary` — сборки, необходимые для компиляции.
    - `RuntimeLibrary` — сборки, требуемые во время выполнения.
 
 ---
 
-### **Как получить DependencyContext**
-#### 1. Для текущего приложения:
+# **Как Получить DependencyContext**
+## 1. Для Текущего Приложения:
 ```csharp
 using Microsoft.Extensions.DependencyModel;
 
 DependencyContext context = DependencyContext.Default;
 ```
 
-#### 2. Для произвольной сборки:
+## 2. Для Произвольной Сборки:
 ```csharp
 using System.Reflection;
 using Microsoft.Extensions.DependencyModel;
@@ -40,8 +40,8 @@ DependencyContext context = DependencyContext.Load(assembly);
 
 ---
 
-### **Примеры использования**
-#### 1. Получение списка runtime-зависимостей:
+# **Примеры использования**
+## 1. Получение Списка Runtime-зависимостей:
 ```csharp
 foreach (var runtimeLib in context.RuntimeLibraries)
 {
@@ -49,7 +49,7 @@ foreach (var runtimeLib in context.RuntimeLibraries)
 }
 ```
 
-#### 2. Поиск путей к файлам сборок:
+## 2. Поиск Путей К Файлам Сборок:
 ```csharp
 var runtimeAssemblies = context.RuntimeLibraries
     .SelectMany(lib => lib.GetDefaultAssemblyNames(context))
@@ -63,7 +63,7 @@ foreach (var assemblyName in runtimeAssemblies)
 
 ---
 
-### **Практический пример: Загрузка зависимостей плагина**
+# **Практический Пример: Загрузка Зависимостей плагина**
 Предположим, вы хотите загрузить плагин, который зависит от тех же пакетов, что и основное приложение. Используйте `DependencyContext`, чтобы найти нужные сборки:
 
 ```csharp
@@ -96,7 +96,7 @@ public class PluginLoadContext : AssemblyLoadContext
 
 ---
 
-### **Обработка конфликтов версий**
+# **Обработка Конфликтов версий**
 Если плагин требует версию зависимости, отличную от версии основного приложения, DependencyModel поможет определить это:
 ```csharp
 var requiredLibrary = context.RuntimeLibraries
@@ -110,29 +110,29 @@ if (requiredLibrary != null)
 
 ---
 
-### **Важные замечания**
-1. **Файл `deps.json`**  
+# **Важные замечания**
+1. **Файл `deps.json`**
    DependencyContext работает только если файл `<app>.deps.json` существует. Он автоматически генерируется для:
    - Приложений, опубликованных через `dotnet publish`.
    - Не self-contained приложений.
 
    **Внимание:** В self-contained приложениях или при публикации с `<PublishSingleFile>true</PublishSingleFile>` файл `deps.json` может отсутствовать.
 
-2. **Ограничения**  
+2. **Ограничения**
    - DependencyContext не отслеживает зависимости динамически загружаемых сборок (только основного приложения).
    - Для плагинов может потребоваться отдельный анализ их `deps.json`.
 
 ---
 
-### **Советы**
-1. **Анализ зависимостей плагина**  
+# **Советы**
+1. **Анализ зависимостей плагина**
    Если плагин — это отдельная сборка, можно попытаться загрузить её `DependencyContext` через манифест:
    ```csharp
    var pluginAssembly = AssemblyLoadContext.Default.LoadFromAssemblyPath("Plugin.dll");
    var pluginContext = DependencyContext.Load(pluginAssembly);
    ```
 
-2. **Использование `AssemblyDependencyResolver`**  
+2. **Использование `AssemblyDependencyResolver`**
    В .NET Core 3.0+ появился класс `AssemblyDependencyResolver`, который упрощает разрешение зависимостей для плагинов:
    ```csharp
    var resolver = new AssemblyDependencyResolver("Plugin.dll");
@@ -141,7 +141,7 @@ if (requiredLibrary != null)
 
 ---
 
-### **Когда использовать DependencyModel?**
+# **Когда Использовать DependencyModel?**
 - **Динамическая загрузка плагинов**: Чтобы корректно разрешать зависимости.
 - **Анализ окружения**: Получение списка всех зависимостей приложения.
 - **Отладка конфликтов версий**: Поиск причин `FileNotFoundException` или `TypeLoadException`.

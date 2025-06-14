@@ -2461,18 +2461,18 @@ Read a URL with no options:
    In [320]: url = "https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list"
    In [321]: pd.read_html(url)
    Out[321]:
-   [ Bank NameBank CityCity StateSt …              Acquiring InstitutionAI Closing DateClosing FundFund
-    0 Almena State Bank Almena KS …                          Equity Bank October 23, 2020 10538
-    1 First City Bank of Florida Fort Walton Beach FL …            United Fidelity Bank, fsb October 16, 2020 10537
-    2 The First State Bank Barboursville WV …                       MVB Bank, Inc. April 3, 2020 10536
-    3 Ericson State Bank Ericson NE …           Farmers and Merchants Bank February 14, 2020 10535
-    4 City National Bank of New Jersey Newark NJ …                      Industrial Bank November 1, 2019 10534
-    .. …                … …  … …                 … …
-    558 Superior Bank, FSB Hinsdale IL …                Superior Federal, FSB July 27, 2001 6004
-    559 Malta National Bank Malta OH …                    North Valley Bank May 3, 2001 4648
-    560 First Alliance Bank & Trust Co. Manchester NH …  Southern New Hampshire Bank & Trust February 2, 2001 4647
-    561 National State Bank of Metropolis Metropolis IL …              Banterra Bank of Marion December 14, 2000 4646
-    562 Bank of Honolulu Honolulu HI …                   Bank of the Orient October 13, 2000 4645
+   [ Bank NameBank CityCity StateSt … Acquiring InstitutionAI Closing DateClosing FundFund
+    0 Almena State Bank Almena KS … Equity Bank October 23, 2020 10538
+    1 First City Bank of Florida Fort Walton Beach FL … United Fidelity Bank, fsb October 16, 2020 10537
+    2 The First State Bank Barboursville WV … MVB Bank, Inc. April 3, 2020 10536
+    3 Ericson State Bank Ericson NE … Farmers and Merchants Bank February 14, 2020 10535
+    4 City National Bank of New Jersey Newark NJ … Industrial Bank November 1, 2019 10534
+    .. … … … … … … …
+    558 Superior Bank, FSB Hinsdale IL … Superior Federal, FSB July 27, 2001 6004
+    559 Malta National Bank Malta OH … North Valley Bank May 3, 2001 4648
+    560 First Alliance Bank & Trust Co. Manchester NH … Southern New Hampshire Bank & Trust February 2, 2001 4647
+    561 National State Bank of Metropolis Metropolis IL … Banterra Bank of Marion December 14, 2000 4646
+    562 Bank of Honolulu Honolulu HI … Bank of the Orient October 13, 2000 4645
 
     [563 rows x 7 columns]]
 
@@ -2487,7 +2487,7 @@ Read a URL while passing headers alongside the HTTP request:
    In [322]: url = 'https://www.sump.org/notes/request/' # HTTP request reflector
    In [323]: pd.read_html(url)
    Out[323]:
-   [ 0                    1
+   [ 0 1
     0 Remote Socket: 51.15.105.256:51760
     1 Protocol Version: HTTP/1.1
     2 Request Method: GET
@@ -2505,7 +2505,7 @@ Read a URL while passing headers alongside the HTTP request:
    In [329]: }
    In [340]: pd.read_html(url, storage_options=headers)
    Out[340]:
-   [ 0                    1
+   [ 0 1
     0 Remote Socket: 51.15.105.256:51760
     1 Protocol Version: HTTP/1.1
     2 Request Method: GET
@@ -5668,13 +5668,13 @@ Assuming the following data is in a ``DataFrame`` ``data``, we can insert it int
 the database using :func:`~pandas.DataFrame.to_sql`.
 
 +-----+------------+-------+-------+-------+
-| id |    Date | Col_1 | Col_2 | Col_3 |
+| id | Date | Col_1 | Col_2 | Col_3 |
 +=====+============+=======+=======+=======+
-| 26 | 2012-10-18 | X   | 25.7 | True |
+| 26 | 2012-10-18 | X | 25.7 | True |
 +-----+------------+-------+-------+-------+
-| 42 | 2012-10-19 | Y   | -12.4 | False |
+| 42 | 2012-10-19 | Y | -12.4 | False |
 +-----+------------+-------+-------+-------+
-| 63 | 2012-10-20 | Z   | 5.73 | True |
+| 63 | 2012-10-20 | Z | 5.73 | True |
 +-----+------------+-------+-------+-------+
 
 
@@ -5732,24 +5732,24 @@ available in different databases and pandas backends:
 +-----------------+-----------------------+----------------+---------+
 |object |string |TEXT |TEXT |
 +-----------------+-----------------------+----------------+---------+
-|bool |``bool_`` |BOOLEAN |         |
+|bool |``bool_`` |BOOLEAN | |
 +-----------------+-----------------------+----------------+---------+
-|datetime64[ns] |timestamp(us) |TIMESTAMP |         |
+|datetime64[ns] |timestamp(us) |TIMESTAMP | |
 +-----------------+-----------------------+----------------+---------+
-|datetime64[ns,tz]|timestamp(us,tz) |TIMESTAMPTZ |         |
+|datetime64[ns,tz]|timestamp(us,tz) |TIMESTAMPTZ | |
 +-----------------+-----------------------+----------------+---------+
-| |date32 |DATE |         |
+| |date32 |DATE | |
 +-----------------+-----------------------+----------------+---------+
-| |month_day_nano_interval|INTERVAL |         |
+| |month_day_nano_interval|INTERVAL | |
 +-----------------+-----------------------+----------------+---------+
 | |binary |BINARY |BLOB |
 +-----------------+-----------------------+----------------+---------+
-| |decimal128 |DECIMAL [#f1]_ |         |
+| |decimal128 |DECIMAL [#f1]_ | |
 +-----------------+-----------------------+----------------+---------+
-| |list |ARRAY [#f1]_ |         |
+| |list |ARRAY [#f1]_ | |
 +-----------------+-----------------------+----------------+---------+
-| |struct |COMPOSITE TYPE |         |
-| |                       | [#f1]_ |         |
+| |struct |COMPOSITE TYPE | |
+| | | [#f1]_ | |
 +-----------------+-----------------------+----------------+---------+
 
 .. rubric:: Footnotes
