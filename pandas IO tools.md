@@ -118,7 +118,7 @@ index_col : int, str, sequence of int / str, or False, optional, default ``None`
 
   The default value of ``None`` instructs pandas to guess. If the number of
   fields in the column header row is equal to the number of fields in the body
-  of the data file, then a default index is used.  If it is larger, then
+  of the data file, then a default index is used. If it is larger, then
   the first columns are used as index so that the remaining number of fields in
   the body are equal to the number of fields in the header.
 
@@ -222,7 +222,7 @@ nrows : int, default ``None``
   Number of rows of file to read. Useful for reading pieces of large files.
 low_memory : boolean, default ``True``
   Internally process the file in chunks, resulting in lower memory use
-  while parsing, but possibly mixed type inference.  To ensure no mixed
+  while parsing, but possibly mixed type inference. To ensure no mixed
   types either set ``False``, or specify the type with the ``dtype`` parameter.
   Note that the entire file is read into a single ``DataFrame`` regardless,
   use the ``chunksize`` or ``iterator`` parameter to return the data in chunks.
@@ -271,7 +271,7 @@ Datetime handling
 
 parse_dates : boolean or list of ints or names or list of lists or dict, default ``False``.
   * If ``True`` -> try parsing the index.
-  * If ``[1, 2, 3]`` ->  try parsing columns 1, 2, 3 each as a separate date
+  * If ``[1, 2, 3]`` -> try parsing columns 1, 2, 3 each as a separate date
     column.
   * If ``[[1, 3]]`` -> combine columns 1 and 3 and parse as a single date
     column.
@@ -535,7 +535,7 @@ When using ``dtype=CategoricalDtype``, "unexpected" values outside of
 
 .. ipython:: python
 
-   dtype = CategoricalDtype(["a", "b", "d"])  # No 'c'
+   dtype = CategoricalDtype(["a", "b", "d"]) # No 'c'
    pd.read_csv(StringIO(data), dtype={"col1": dtype}).col1
 
 This matches the behavior of :meth:`Categorical.set_categories`.
@@ -658,7 +658,7 @@ be ignored. By default, completely blank lines will be ignored as well.
 
 .. ipython:: python
 
-   data = "\na,b,c\n  \n# commented line\n1,2,3\n\n4,5,6"
+   data = "\na,b,c\n \n# commented line\n1,2,3\n\n4,5,6"
    print(data)
    pd.read_csv(StringIO(data), comment="#")
 
@@ -823,11 +823,11 @@ The simplest case is to just pass in ``parse_dates=True``:
    with open("foo.csv", mode="w") as f:
        f.write("date,A,B,C\n20090101,a,1,2\n20090102,b,3,4\n20090103,c,4,5")
 
-   # Use a column as an index, and parse it as dates.
+# Use a Column as an Index, and Parse it as Dates.
    df = pd.read_csv("foo.csv", index_col=0, parse_dates=True)
    df
 
-   # These are Python datetime objects
+# These Are Python Datetime Objects
    df.index
 
 It is often the case that we may want to store date and time data separately,
@@ -895,7 +895,7 @@ data columns:
    date_spec = {"nominal": [1, 2], "actual": [1, 3]}
    df = pd.read_csv(
        "tmp.csv", header=None, parse_dates=date_spec, index_col=0
-   )  # index is the nominal column
+   ) # index is the nominal column
    df
 
 .. note::
@@ -974,7 +974,7 @@ representing December 30th, 2011 at 00:00:00):
 * "30/Dec/2011 00:00:00"
 * "30/December/2011 00:00:00"
 
-Note that format inference is sensitive to ``dayfirst``.  With
+Note that format inference is sensitive to ``dayfirst``. With
 ``dayfirst=True``, it will guess "01/12/2011" to be December 1st. With
 ``dayfirst=False`` (default) it will guess "01/12/2011" to be January 12th.
 
@@ -995,7 +995,7 @@ way to parse dates is to explicitly set ``format=``.
    df
 
 In the case that you have mixed datetime formats within the same column, you can
-pass  ``format='mixed'``
+pass ``format='mixed'``
 
 .. ipython:: python
 
@@ -1353,7 +1353,7 @@ to ``read_fwf`` are largely the same as ``read_csv`` with two extra parameters, 
 a different usage of the ``delimiter`` parameter:
 
 * ``colspecs``: A list of pairs (tuples) giving the extents of the
-  fixed-width fields of each line as half-open intervals (i.e.,  [from, to[ ).
+  fixed-width fields of each line as half-open intervals (i.e., [from, to[ ).
   String value 'infer' can be used to instruct the parser to try detecting
   the column specifications from the first 100 rows of the data. Default
   behavior, if not specified, is to infer.
@@ -1368,11 +1368,11 @@ Consider a typical fixed-width data file:
 .. ipython:: python
 
    data1 = (
-       "id8141    360.242940   149.910199   11950.7\n"
-       "id1594    444.953632   166.985655   11788.4\n"
-       "id1849    364.136849   183.628767   11806.2\n"
-       "id1230    413.836124   184.375703   11916.8\n"
-       "id1948    502.953953   173.237159   12468.3"
+       "id8141 360.242940 149.910199 11950.7\n"
+       "id1594 444.953632 166.985655 11788.4\n"
+       "id1849 364.136849 183.628767 11806.2\n"
+       "id1230 413.836124 184.375703 11916.8\n"
+       "id1948 502.953953 173.237159 12468.3"
    )
    with open("bar.csv", "w") as f:
        f.write(data1)
@@ -1382,7 +1382,7 @@ column specifications to the ``read_fwf`` function along with the file name:
 
 .. ipython:: python
 
-   # Column specifications are a list of half-intervals
+# Column Specifications Are a List of Half-intervals
    colspecs = [(0, 6), (8, 20), (21, 33), (34, 43)]
    df = pd.read_fwf("bar.csv", colspecs=colspecs, header=None, index_col=0)
    df
@@ -1393,7 +1393,7 @@ column widths for contiguous columns:
 
 .. ipython:: python
 
-   # Widths are a list of integers
+# Widths Are a List of Integers
    widths = [6, 14, 13, 10]
    df = pd.read_fwf("bar.csv", widths=widths, header=None)
    df
@@ -1757,7 +1757,7 @@ The ``Series`` and ``DataFrame`` objects have an instance method ``to_csv`` whic
 allows storing the contents of the object as a comma-separated-values file. The
 function takes a number of arguments. Only the first is required.
 
-* ``path_or_buf``: A string path to the file to write or a file object.  If a file object it must be opened with ``newline=''``
+* ``path_or_buf``: A string path to the file to write or a file object. If a file object it must be opened with ``newline=''``
 * ``sep`` : Field delimiter for the output file (default ",")
 * ``na_rep``: A string representation of a missing value (default '')
 * ``float_format``: Format string for floating point numbers
@@ -1886,7 +1886,7 @@ nested JSON objects with column labels acting as the primary index:
 .. ipython:: python
 
   dfjo.to_json(orient="columns")
-  # Not available for Series
+# Not Available for Series
 
 **Index oriented** (the default for ``Series``) similar to column oriented
 but the index labels are now primary:
@@ -1911,7 +1911,7 @@ values only, column and index labels are not included:
 .. ipython:: python
 
   dfjo.to_json(orient="values")
-  # Not available for Series
+# Not Available for Series
 
 **Split oriented** serializes to a JSON object containing separate entries for
 values, index and columns. Name is also included for ``Series``:
@@ -1996,7 +1996,7 @@ For example:
 
 .. code-block:: python
 
-  >>> DataFrame([1.0, 2.0, complex(1.0, 2.0)]).to_json()  # raises
+  > > > DataFrame([1.0, 2.0, complex(1.0, 2.0)]).to_json() # raises
   RuntimeError: Unhandled numpy dtype 15
 
 can be dealt with by specifying a simple ``default_handler``:
@@ -2018,7 +2018,7 @@ is ``None``. To explicitly force ``Series`` parsing, pass ``typ=series``
   a URL. Valid URL schemes include http, ftp, S3, and file. For file URLs, a host
   is expected. For instance, a local file could be
   file ://localhost/path/to/table.json
-* ``typ``    : type of object to recover (series or frame), default 'frame'
+* ``typ`` : type of object to recover (series or frame), default 'frame'
 * ``orient`` :
 
   Series :
@@ -2142,15 +2142,15 @@ Dates written in nanoseconds need to be read back in nanoseconds:
    from io import StringIO
    json = dfj2.to_json(date_unit="ns")
 
-   # Try to parse timestamps as milliseconds -> Won't Work
+# Try to Parse Timestamps as Milliseconds -> Won't Work
    dfju = pd.read_json(StringIO(json), date_unit="ms")
    dfju
 
-   # Let pandas detect the correct precision
+# Let Pandas Detect the Correct Precision
    dfju = pd.read_json(StringIO(json))
    dfju
 
-   # Or specify that all timestamps are in nanoseconds
+# Or Specify that All Timestamps Are in Nanoseconds
    dfju = pd.read_json(StringIO(json), date_unit="ns")
    dfju
 
@@ -2248,7 +2248,7 @@ For line-delimited json files, pandas can also return an iterator which reads in
   df
   df.to_json(orient="records", lines=True)
 
-  # reader is an iterator that returns ``chunksize`` lines each iteration
+# Reader is an Iterator that Returns ``chunksize`` Lines Each Iteration
   with pd.read_json(StringIO(jsonl), lines=True, chunksize=1) as reader:
       reader
       for chunk in reader:
@@ -2302,15 +2302,15 @@ The full list of types supported are described in the Table Schema
 spec. This table shows the mapping from pandas types:
 
 =============== =================
-pandas type     Table Schema type
+pandas type Table Schema type
 =============== =================
-int64           integer
-float64         number
-bool            boolean
-datetime64[ns]  datetime
+int64 integer
+float64 number
+bool boolean
+datetime64[ns] datetime
 timedelta64[ns] duration
-categorical     any
-object          str
+categorical any
+object str
 =============== =================
 
 A few notes on the generated table schema:
@@ -2461,18 +2461,18 @@ Read a URL with no options:
    In [320]: url = "https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list"
    In [321]: pd.read_html(url)
    Out[321]:
-   [                         Bank NameBank           CityCity StateSt  …              Acquiring InstitutionAI Closing DateClosing FundFund
-    0                    Almena State Bank             Almena      KS  …                          Equity Bank    October 23, 2020    10538
-    1           First City Bank of Florida  Fort Walton Beach      FL  …            United Fidelity Bank, fsb    October 16, 2020    10537
-    2                 The First State Bank      Barboursville      WV  …                       MVB Bank, Inc.       April 3, 2020    10536
-    3                   Ericson State Bank            Ericson      NE  …           Farmers and Merchants Bank   February 14, 2020    10535
-    4     City National Bank of New Jersey             Newark      NJ  …                      Industrial Bank    November 1, 2019    10534
-    ..                                 …                …     …  …                                  …                 …      …
-    558                 Superior Bank, FSB           Hinsdale      IL  …                Superior Federal, FSB       July 27, 2001     6004
-    559                Malta National Bank              Malta      OH  …                    North Valley Bank         May 3, 2001     4648
-    560    First Alliance Bank & Trust Co.         Manchester      NH  …  Southern New Hampshire Bank & Trust    February 2, 2001     4647
-    561  National State Bank of Metropolis         Metropolis      IL  …              Banterra Bank of Marion   December 14, 2000     4646
-    562                   Bank of Honolulu           Honolulu      HI  …                   Bank of the Orient    October 13, 2000     4645
+   [ Bank NameBank CityCity StateSt …              Acquiring InstitutionAI Closing DateClosing FundFund
+    0 Almena State Bank Almena KS …                          Equity Bank October 23, 2020 10538
+    1 First City Bank of Florida Fort Walton Beach FL …            United Fidelity Bank, fsb October 16, 2020 10537
+    2 The First State Bank Barboursville WV …                       MVB Bank, Inc. April 3, 2020 10536
+    3 Ericson State Bank Ericson NE …           Farmers and Merchants Bank February 14, 2020 10535
+    4 City National Bank of New Jersey Newark NJ …                      Industrial Bank November 1, 2019 10534
+    .. …                … …  … …                 … …
+    558 Superior Bank, FSB Hinsdale IL …                Superior Federal, FSB July 27, 2001 6004
+    559 Malta National Bank Malta OH …                    North Valley Bank May 3, 2001 4648
+    560 First Alliance Bank & Trust Co. Manchester NH …  Southern New Hampshire Bank & Trust February 2, 2001 4647
+    561 National State Bank of Metropolis Metropolis IL …              Banterra Bank of Marion December 14, 2000 4646
+    562 Bank of Honolulu Honolulu HI …                   Bank of the Orient October 13, 2000 4645
 
     [563 rows x 7 columns]]
 
@@ -2487,35 +2487,35 @@ Read a URL while passing headers alongside the HTTP request:
    In [322]: url = 'https://www.sump.org/notes/request/' # HTTP request reflector
    In [323]: pd.read_html(url)
    Out[323]:
-   [                   0                    1
-    0     Remote Socket:  51.15.105.256:51760
-    1  Protocol Version:             HTTP/1.1
-    2    Request Method:                  GET
-    3       Request URI:      /notes/request/
-    4     Request Query:                  NaN,
-    0   Accept-Encoding:             identity
-    1              Host:         www.sump.org
-    2        User-Agent:    Python-urllib/3.8
-    3        Connection:                close]
+   [ 0                    1
+    0 Remote Socket: 51.15.105.256:51760
+    1 Protocol Version: HTTP/1.1
+    2 Request Method: GET
+    3 Request URI: /notes/request/
+    4 Request Query: NaN,
+    0 Accept-Encoding: identity
+    1 Host: www.sump.org
+    2 User-Agent: Python-urllib/3.8
+    3 Connection: close]
    In [324]: headers = {
-   In [325]:    'User-Agent':'Mozilla Firefox v14.0',
-   In [326]:    'Accept':'application/json',
-   In [327]:    'Connection':'keep-alive',
-   In [328]:    'Auth':'Bearer 2*/f3+fe68df*4'
+   In [325]: 'User-Agent':'Mozilla Firefox v14.0',
+   In [326]: 'Accept':'application/json',
+   In [327]: 'Connection':'keep-alive',
+   In [328]: 'Auth':'Bearer 2*/f3+fe68df*4'
    In [329]: }
    In [340]: pd.read_html(url, storage_options=headers)
    Out[340]:
-   [                   0                    1
-    0     Remote Socket:  51.15.105.256:51760
-    1  Protocol Version:             HTTP/1.1
-    2    Request Method:                  GET
-    3       Request URI:      /notes/request/
-    4     Request Query:                  NaN,
-    0        User-Agent: Mozilla Firefox v14.0
-    1    AcceptEncoding:   gzip,  deflate,  br
-    2            Accept:      application/json
-    3        Connection:             keep-alive
-    4              Auth:  Bearer 2*/f3+fe68df*4]
+   [ 0                    1
+    0 Remote Socket: 51.15.105.256:51760
+    1 Protocol Version: HTTP/1.1
+    2 Request Method: GET
+    3 Request URI: /notes/request/
+    4 Request Query: NaN,
+    0 User-Agent: Mozilla Firefox v14.0
+    1 AcceptEncoding: gzip, deflate, br
+    2 Accept: application/json
+    3 Connection: keep-alive
+    4 Auth: Bearer 2*/f3+fe68df*4]
 
 .. note::
 
@@ -2608,7 +2608,7 @@ Specify an HTML attribute:
 
    dfs1 = pd.read_html(url, attrs={"id": "table"})
    dfs2 = pd.read_html(url, attrs={"class": "sortable"})
-   print(np.array_equal(dfs1[0], dfs2[0]))  # Should be True
+   print(np.array_equal(dfs1[0], dfs2[0])) # Should be True
 
 Specify values that should be converted to NaN:
 
@@ -2623,7 +2623,7 @@ Specify whether to keep the default set of NaN values:
    dfs = pd.read_html(url, keep_default_na=False)
 
 Specify converters for columns. This is useful for numerical text data that has
-leading zeros.  By default columns that are numerical are cast to numeric
+leading zeros. By default columns that are numerical are cast to numeric
 types and the leading zeros are lost. To avoid this, we can convert these
 columns to strings.
 
@@ -2726,7 +2726,7 @@ in the method ``to_string`` described above.
    df = pd.DataFrame(np.random.randn(2, 2))
    df
    html = df.to_html()
-   print(html)  # raw html
+   print(html) # raw html
    display(HTML(html))
 
 The ``columns`` argument will limit the columns shown:
@@ -2864,7 +2864,7 @@ parse HTML tables in the top-level pandas io function ``read_html``.
 * Drawbacks
 
     - The biggest drawback to using |html5lib|_ is that it is slow as
-      molasses.  However consider the fact that many tables on the web are not
+      molasses. However consider the fact that many tables on the web are not
       big enough for the parsing algorithm runtime to matter. It is more
       likely that the bottleneck will be in the process of reading the raw
       text from the URL over the web, i.e., IO (input-output). For very large
@@ -3466,7 +3466,7 @@ can be read using ``xlrd``. Binary Excel (``.xlsb``)
 files can be read using ``pyxlsb``. All formats can be read
 using :ref:`calamine<io.calamine>` engine.
 The :meth:`~DataFrame.to_excel` instance method is used for
-saving a ``DataFrame`` to Excel.  Generally the semantics are
+saving a ``DataFrame`` to Excel. Generally the semantics are
 similar to working with :ref:`csv<io.read_csv_table>` data.
 See the :ref:`cookbook<cookbook.excel>` for some advanced strategies.
 
@@ -3505,7 +3505,7 @@ using internally.
 
 .. code-block:: python
 
-   # Returns a DataFrame
+# Returns a DataFrame
    pd.read_excel("path_to_file.xls", sheet_name="Sheet1")
 
 
@@ -3595,35 +3595,35 @@ Specifying sheets
 
 .. code-block:: python
 
-   # Returns a DataFrame
+# Returns a DataFrame
    pd.read_excel("path_to_file.xls", "Sheet1", index_col=None, na_values=["NA"])
 
 Using the sheet index:
 
 .. code-block:: python
 
-   # Returns a DataFrame
+# Returns a DataFrame
    pd.read_excel("path_to_file.xls", 0, index_col=None, na_values=["NA"])
 
 Using all default values:
 
 .. code-block:: python
 
-   # Returns a DataFrame
+# Returns a DataFrame
    pd.read_excel("path_to_file.xls")
 
 Using None to get all sheets:
 
 .. code-block:: python
 
-   # Returns a dictionary of DataFrames
+# Returns a Dictionary of DataFrames
    pd.read_excel("path_to_file.xls", sheet_name=None)
 
 Using a list to get multiple sheets:
 
 .. code-block:: python
 
-   # Returns the 1st and 4th sheet, as a dictionary of DataFrames.
+# Returns the 1st and 4th Sheet, as a Dictionary of DataFrames.
    pd.read_excel("path_to_file.xls", sheet_name=["Sheet1", 3])
 
 ``read_excel`` can read more than one sheet, by setting ``sheet_name`` to either
@@ -3637,7 +3637,7 @@ Reading a ``MultiIndex``
 ++++++++++++++++++++++++
 
 ``read_excel`` can read a ``MultiIndex`` index, by passing a list of columns to ``index_col``
-and a ``MultiIndex`` column by passing a list of rows to ``header``.  If either the ``index``
+and a ``MultiIndex`` column by passing a list of rows to ``header``. If either the ``index``
 or ``columns`` have serialized level names those will be read in as well by specifying
 the rows/columns that make up the levels.
 
@@ -3766,7 +3766,7 @@ Dtype specifications
 
 As an alternative to converters, the type for an entire column can
 be specified using the ``dtype`` keyword, which takes a dictionary
-mapping column names to types.  To interpret data with
+mapping column names to types. To interpret data with
 no type inference, use the type ``str`` or ``object``.
 
 .. code-block:: python
@@ -3782,7 +3782,7 @@ Writing Excel files to disk
 +++++++++++++++++++++++++++
 
 To write a ``DataFrame`` object to a sheet of an Excel file, you can use the
-``to_excel`` instance method.  The arguments are largely the same as ``to_csv``
+``to_excel`` instance method. The arguments are largely the same as ``to_csv``
 described above, the first argument being the name of the excel file, and the
 optional second argument the name of the sheet to which the ``DataFrame`` should be
 written. For example:
@@ -3836,14 +3836,14 @@ pandas supports writing Excel files to buffer-like objects such as ``StringIO`` 
 
    bio = BytesIO()
 
-   # By setting the 'engine' in the ExcelWriter constructor.
+# By Setting the 'engine' in the ExcelWriter Constructor.
    writer = pd.ExcelWriter(bio, engine="xlsxwriter")
    df.to_excel(writer, sheet_name="Sheet1")
 
-   # Save the workbook
+# Save the Workbook
    writer.save()
 
-   # Seek to the beginning and read to copy the workbook to a variable in memory
+# Seek to the Beginning and Read to Copy the Workbook to a Variable in Memory
    bio.seek(0)
    workbook = bio.read()
 
@@ -3866,7 +3866,7 @@ pandas chooses an Excel writer via two methods:
 1. the ``engine`` keyword argument
 2. the filename extension (via the default specified in config options)
 
-By default, pandas uses the `XlsxWriter`_  for ``.xlsx``, `openpyxl`_
+By default, pandas uses the `XlsxWriter`_ for ``.xlsx``, `openpyxl`_
 for ``.xlsm``. If you have multiple
 engines installed, you can set the default engine through :ref:`setting the
 config options <options>` ``io.excel.xlsx.writer`` and
@@ -3884,14 +3884,14 @@ argument to ``to_excel`` and to ``ExcelWriter``. The built-in engines are:
 
 .. code-block:: python
 
-   # By setting the 'engine' in the DataFrame 'to_excel()' methods.
+# By Setting the 'engine' in the DataFrame 'to_excel()' Methods.
    df.to_excel("path_to_file.xlsx", sheet_name="Sheet1", engine="xlsxwriter")
 
-   # By setting the 'engine' in the ExcelWriter constructor.
+# By Setting the 'engine' in the ExcelWriter Constructor.
    writer = pd.ExcelWriter("path_to_file.xlsx", engine="xlsxwriter")
 
-   # Or via pandas configuration.
-   from pandas import options  # noqa: E402
+# Or via Pandas Configuration.
+   from pandas import options # noqa: E402
 
    options.io.excel.xlsx.writer = "xlsxwriter"
 
@@ -3908,7 +3908,7 @@ The look and feel of Excel worksheets created from pandas can be modified using 
 * ``freeze_panes`` : A tuple of two integers representing the bottommost row and rightmost column to freeze. Each of these parameters is one-based, so (1, 1) will freeze the first row and first column (default ``None``).
 
 Using the `Xlsxwriter`_ engine provides many options for controlling the
-format of an Excel worksheet created with the ``to_excel`` method.  Excellent examples can be found in the
+format of an Excel worksheet created with the ``to_excel`` method. Excellent examples can be found in the
 `Xlsxwriter`_ documentation here: https://xlsxwriter.readthedocs.io/working_with_pandas.html
 
 .. _io.ods:
@@ -3925,14 +3925,14 @@ The :func:`~pandas.read_excel` method can read OpenDocument spreadsheets
 
 .. code-block:: python
 
-   # Returns a DataFrame
+# Returns a DataFrame
    pd.read_excel("path_to_file.ods", engine="odf")
 
 Similarly, the :func:`~pandas.to_excel` method can write OpenDocument spreadsheets
 
 .. code-block:: python
 
-   # Writes DataFrame to a .ods file
+# Writes DataFrame to a .ods File
    df.to_excel("path_to_file.ods", engine="odf")
 
 .. _io.xlsb:
@@ -3949,7 +3949,7 @@ if you need recognize datetime types).
 
 .. code-block:: python
 
-   # Returns a DataFrame
+# Returns a DataFrame
    pd.read_excel("path_to_file.xlsb", engine="pyxlsb")
 
 .. note::
@@ -3969,7 +3969,7 @@ and is faster than other engines in most cases. The optional dependency 'python-
 
 .. code-block:: python
 
-   # Returns a DataFrame
+# Returns a DataFrame
    pd.read_excel("path_to_file.xlsb", engine="calamine")
 
 .. _io.clipboard:
@@ -4189,7 +4189,7 @@ dict:
    s = pd.Series(np.random.randn(5), index=["a", "b", "c", "d", "e"])
    df = pd.DataFrame(np.random.randn(8, 3), index=index, columns=["A", "B", "C"])
 
-   # store.put('s', s) is an equivalent method
+# store.put('s', s) Is an Equivalent Method
    store["s"] = s
 
    store["df"] = df
@@ -4200,17 +4200,17 @@ In a current or later Python session, you can retrieve stored objects:
 
 .. ipython:: python
 
-   # store.get('df') is an equivalent method
+# store.get('df') Is an Equivalent Method
    store["df"]
 
-   # dotted (attribute) access provides get as well
+# Dotted (attribute) Access Provides Get as well
    store.df
 
 Deletion of the object specified by the key:
 
 .. ipython:: python
 
-   # store.remove('df') is an equivalent method
+# store.remove('df') Is an Equivalent Method
    del store["df"]
 
    store
@@ -4223,7 +4223,7 @@ Closing a Store and using a context manager:
    store
    store.is_open
 
-   # Working with, and automatically closing the store using a context manager
+# Working With, and Automatically Closing the Store Using a Context Manager
    with pd.HDFStore("store.h5") as store:
        store.keys()
 
@@ -4238,7 +4238,7 @@ Closing a Store and using a context manager:
 Read/write API
 ''''''''''''''
 
-``HDFStore`` supports a top-level API using  ``read_hdf`` for reading and ``to_hdf`` for writing,
+``HDFStore`` supports a top-level API using ``read_hdf`` for reading and ``to_hdf`` for writing,
 similar to how ``read_csv`` and ``to_csv`` work.
 
 .. ipython:: python
@@ -4319,7 +4319,7 @@ Table format
 ``HDFStore`` supports another ``PyTables`` format on disk, the ``table``
 format. Conceptually a ``table`` is shaped very much like a DataFrame,
 with rows and columns. A ``table`` may be appended to in the same or
-other sessions.  In addition, delete and query type operations are
+other sessions. In addition, delete and query type operations are
 supported. This format is specified by ``format='table'`` or ``format='t'``
 to ``append`` or ``put`` or ``to_hdf``.
 
@@ -4338,15 +4338,15 @@ enable ``put/append/to_hdf`` to by default store in the ``table`` format.
    df1 = df[0:4]
    df2 = df[4:]
 
-   # append data (creates a table automatically)
+# Append Data (creates a Table automatically)
    store.append("df", df1)
    store.append("df", df2)
    store
 
-   # select the entire object
+# Select the Entire Object
    store.select("df")
 
-   # the type of stored data
+# The Type of Stored Data
    store.root.df._v_attrs.pandas_type
 
 .. note::
@@ -4372,10 +4372,10 @@ everything in the sub-store and **below**, so be *careful*.
    store.append("food/apple", df)
    store
 
-   # a list of keys are returned
+# A List of Keys Are Returned
    store.keys()
 
-   # remove all nodes under this level
+# Remove All Nodes under This Level
    store.remove("food")
    store
 
@@ -4478,7 +4478,7 @@ storing/selecting from homogeneous index ``DataFrames``.
    store.append("df_mi", df_mi)
    store.select("df_mi")
 
-   # the levels are automatically included as data columns
+# The Levels Are Automatically Included as Data Columns
    store.select("df_mi", "foo=bar")
 
 .. note::
@@ -4501,7 +4501,7 @@ A query is specified using the ``Term`` class under the hood, as a boolean expre
 
 * ``index`` and ``columns`` are supported indexers of ``DataFrames``.
 * if ``data_columns`` are specified, these can be used as additional indexers.
-* level name in a MultiIndex, with default name  ``level_0``, ``level_1``, вЂ¦ if not provided.
+* level name in a MultiIndex, with default name ``level_0``, ``level_1``, вЂ¦ if not provided.
 
 Valid comparison operators are:
 
@@ -4674,7 +4674,7 @@ the ``level_n`` keyword with ``n`` the level of the ``MultiIndex`` you want to s
 
    store.append("df_mi_2", df_mi_2)
 
-   # the levels are automatically included as data columns with keyword level_n
+# The Levels Are Automatically Included as Data Columns with Keyword level_n
    store.select("df_mi_2", "level_0=foo and level_1=two")
 
 
@@ -4695,11 +4695,11 @@ indexed dimension as the ``where``.
 
 .. ipython:: python
 
-   # we have automagically already created an index (in the first section)
+# We Have Automagically Already Created an Index (in the First section)
    i = store.root.df.table.cols.index.index
    i.optlevel, i.kind
 
-   # change an index by passing new parameters
+# Change an Index by Passing New Parameters
    store.create_table_index("df", optlevel=9, kind="full")
    i = store.root.df.table.cols.index.index
    i.optlevel, i.kind
@@ -4755,18 +4755,18 @@ be ``data_columns``.
    df_dc.loc[df_dc.index[1:3], ["B", "C"]] = 1.0
    df_dc
 
-   # on-disk operations
+# On-disk Operations
    store.append("df_dc", df_dc, data_columns=["B", "C", "string", "string2"])
    store.select("df_dc", where="B > 0")
 
-   # getting creative
+# Getting Creative
    store.select("df_dc", "B > 0 & C > 0 & string == foo")
 
-   # this is in-memory version of this type of selection
+# This is In-memory Version of This Type of Selection
    df_dc[(df_dc.B > 0) & (df_dc.C > 0) & (df_dc.string == "foo")]
 
-   # we have automagically created this index and the B/C/string/string2
-   # columns are stored separately as ``PyTables`` columns
+# We Have Automagically Created This Index and the B/C/string/string2
+# Columns Are Stored Separately as ``PyTables`` Columns
    store.root.df_dc.table
 
 There is some performance degradation by making lots of columns into
@@ -4904,7 +4904,7 @@ is used in place of a list, that table will have the remaining
 unspecified columns of the given DataFrame. The argument ``selector``
 defines which table is the selector table (which you can make queries from).
 The argument ``dropna`` will drop rows from the input ``DataFrame`` to ensure
-tables are synchronized.  This means that if a row for one of the tables
+tables are synchronized. This means that if a row for one of the tables
 being written to is entirely ``np.nan``, that row will be dropped from all tables.
 
 If ``dropna`` is False, **THE USER IS RESPONSIBLE FOR SYNCHRONIZING THE TABLES**.
@@ -4923,17 +4923,17 @@ results.
    df_mt["foo"] = "bar"
    df_mt.loc[df_mt.index[1], ("A", "B")] = np.nan
 
-   # you can also create the tables individually
+# You Can also Create the Tables Individually
    store.append_to_multiple(
        {"df1_mt": ["A", "B"], "df2_mt": None}, df_mt, selector="df1_mt"
    )
    store
 
-   # individual tables were created
+# Individual Tables Were Created
    store.select("df1_mt")
    store.select("df2_mt")
 
-   # as a multiple
+# As a Multiple
    store.select_as_multiple(
        ["df1_mt", "df2_mt"],
        where=["A>0", "B>0"],
@@ -4999,7 +4999,7 @@ control compression: ``complevel`` and ``complib``.
   ``0<complevel<10`` enables compression.
 
 * ``complib`` specifies which compression library to use.
-  If nothing is  specified the default library ``zlib`` is used. A
+  If nothing is specified the default library ``zlib`` is used. A
   compression library usually optimizes for either good compression rates
   or speed and the results will depend on the type of data. Which type of
   compression to choose depends on your specific needs and data. The list
@@ -5095,11 +5095,11 @@ Caveats
 * Once a ``table`` is created columns (DataFrame)
   are fixed; only exactly the same columns can be appended
 * Be aware that timezones (e.g., ``pytz.timezone('US/Eastern')``)
-  are not necessarily equal across timezone versions.  So if data is
+  are not necessarily equal across timezone versions. So if data is
   localized to a specific timezone in the HDFStore using one version
   of a timezone library and that data is updated with another version, the data
   will be converted to UTC since these timezones are not considered
-  equal.  Either use the same version of timezone library or use ``tz_convert`` with
+  equal. Either use the same version of timezone library or use ``tz_convert`` with
   the updated timezone definition.
 
 .. warning::
@@ -5119,17 +5119,17 @@ DataTypes
 ``HDFStore`` will map an object dtype to the ``PyTables`` underlying
 dtype. This means the following types are known to work:
 
-======================================================  =========================
-Type                                                    Represents missing values
-======================================================  =========================
-floating : ``float64, float32, float16``                ``np.nan``
+====================================================== =========================
+Type Represents missing values
+====================================================== =========================
+floating : ``float64, float32, float16`` ``np.nan``
 integer : ``int64, int32, int8, uint64,uint32, uint8``
 boolean
-``datetime64[ns]``                                      ``NaT``
-``timedelta64[ns]``                                     ``NaT``
+``datetime64[ns]`` ``NaT``
+``timedelta64[ns]`` ``NaT``
 categorical : see the section below
-object : ``strings``                                    ``np.nan``
-======================================================  =========================
+object : ``strings`` ``np.nan``
+====================================================== =========================
 
 ``unicode`` columns are not supported, and **WILL FAIL**.
 
@@ -5190,12 +5190,12 @@ Passing a ``min_itemsize`` dict will cause all passed columns to be created as *
    dfs = pd.DataFrame({"A": "foo", "B": "bar"}, index=list(range(5)))
    dfs
 
-   # A and B have a size of 30
+# A and B Have a Size of 30
    store.append("dfs", dfs, min_itemsize=30)
    store.get_storer("dfs").table
 
-   # A is created as a data_column with a size of 30
-   # B is size is calculated
+# A is Created as a data_column with a Size of 30
+# B is Size is Calculated
    store.append("dfs2", dfs, min_itemsize={"A": 30})
    store.get_storer("dfs2").table
 
@@ -5212,7 +5212,7 @@ You could inadvertently turn an actual ``nan`` value into a missing value.
    store.append("dfss", dfss)
    store.select("dfss")
 
-   # here you need to specify a different nan rep
+# Here You Need to Specify a Different Nan Rep
    store.append("dfss2", dfss, nan_rep="_nan_")
    store.select("dfss2")
 
@@ -5222,7 +5222,7 @@ Performance
 
 * ``tables`` format come with a writing performance penalty as compared to
   ``fixed`` stores. The benefit is the ability to append/delete and
-  query (potentially very large amounts of data).  Write times are
+  query (potentially very large amounts of data). Write times are
   generally longer as compared with regular stores. Query times can
   be quite fast, especially on an indexed axis.
 * You can pass ``chunksize=<int>`` to ``append``, specifying the
@@ -5305,7 +5305,7 @@ Read from a feather file.
    result = pd.read_feather("example.feather")
    result
 
-   # we preserve dtypes
+# We Preserve Dtypes
    result.dtypes
 
 .. ipython:: python
@@ -5627,7 +5627,7 @@ to connect to your database.
 
    import adbc_driver_sqlite.dbapi as sqlite_dbapi
 
-   # Create the connection
+# Create the Connection
    with sqlite_dbapi.connect("sqlite:///:memory:") as conn:
         df = pd.read_sql_table("data", conn)
 
@@ -5641,7 +5641,7 @@ below and the SQLAlchemy `documentation <https://docs.sqlalchemy.org/en/latest/c
 
    from sqlalchemy import create_engine
 
-   # Create your engine.
+# Create Your Engine.
    engine = create_engine("sqlite:///:memory:")
 
 If you want to manage your own connections you can pass one of those instead. The example below opens a
@@ -5668,13 +5668,13 @@ Assuming the following data is in a ``DataFrame`` ``data``, we can insert it int
 the database using :func:`~pandas.DataFrame.to_sql`.
 
 +-----+------------+-------+-------+-------+
-| id  |    Date    | Col_1 | Col_2 | Col_3 |
+| id |    Date | Col_1 | Col_2 | Col_3 |
 +=====+============+=======+=======+=======+
-| 26  | 2012-10-18 |   X   |  25.7 | True  |
+| 26 | 2012-10-18 | X   | 25.7 | True |
 +-----+------------+-------+-------+-------+
-| 42  | 2012-10-19 |   Y   | -12.4 | False |
+| 42 | 2012-10-19 | Y   | -12.4 | False |
 +-----+------------+-------+-------+-------+
-| 63  | 2012-10-20 |   Z   |  5.73 | True  |
+| 63 | 2012-10-20 | Z   | 5.73 | True |
 +-----+------------+-------+-------+-------+
 
 
@@ -5696,7 +5696,7 @@ the database using :func:`~pandas.DataFrame.to_sql`.
 
 With some databases, writing large DataFrames can result in errors due to
 packet size limitations being exceeded. This can be avoided by setting the
-``chunksize`` parameter when calling ``to_sql``.  For example, the following
+``chunksize`` parameter when calling ``to_sql``. For example, the following
 writes ``data`` to the database in batches of 1000 rows at a time:
 
 .. ipython:: python
@@ -5718,38 +5718,38 @@ type system. To illustrate, note this (non-exhaustive) listing of types
 available in different databases and pandas backends:
 
 +-----------------+-----------------------+----------------+---------+
-|numpy/pandas     |arrow                  |postgres        |sqlite   |
+|numpy/pandas |arrow |postgres |sqlite |
 +=================+=======================+================+=========+
-|int16/Int16      |int16                  |SMALLINT        |INTEGER  |
+|int16/Int16 |int16 |SMALLINT |INTEGER |
 +-----------------+-----------------------+----------------+---------+
-|int32/Int32      |int32                  |INTEGER         |INTEGER  |
+|int32/Int32 |int32 |INTEGER |INTEGER |
 +-----------------+-----------------------+----------------+---------+
-|int64/Int64      |int64                  |BIGINT          |INTEGER  |
+|int64/Int64 |int64 |BIGINT |INTEGER |
 +-----------------+-----------------------+----------------+---------+
-|float32          |float32                |REAL            |REAL     |
+|float32 |float32 |REAL |REAL |
 +-----------------+-----------------------+----------------+---------+
-|float64          |float64                |DOUBLE PRECISION|REAL     |
+|float64 |float64 |DOUBLE PRECISION|REAL |
 +-----------------+-----------------------+----------------+---------+
-|object           |string                 |TEXT            |TEXT     |
+|object |string |TEXT |TEXT |
 +-----------------+-----------------------+----------------+---------+
-|bool             |``bool_``              |BOOLEAN         |         |
+|bool |``bool_`` |BOOLEAN |         |
 +-----------------+-----------------------+----------------+---------+
-|datetime64[ns]   |timestamp(us)          |TIMESTAMP       |         |
+|datetime64[ns] |timestamp(us) |TIMESTAMP |         |
 +-----------------+-----------------------+----------------+---------+
-|datetime64[ns,tz]|timestamp(us,tz)       |TIMESTAMPTZ     |         |
+|datetime64[ns,tz]|timestamp(us,tz) |TIMESTAMPTZ |         |
 +-----------------+-----------------------+----------------+---------+
-|                 |date32                 |DATE            |         |
+| |date32 |DATE |         |
 +-----------------+-----------------------+----------------+---------+
-|                 |month_day_nano_interval|INTERVAL        |         |
+| |month_day_nano_interval|INTERVAL |         |
 +-----------------+-----------------------+----------------+---------+
-|                 |binary                 |BINARY          |BLOB     |
+| |binary |BINARY |BLOB |
 +-----------------+-----------------------+----------------+---------+
-|                 |decimal128             |DECIMAL [#f1]_  |         |
+| |decimal128 |DECIMAL [#f1]_ |         |
 +-----------------+-----------------------+----------------+---------+
-|                 |list                   |ARRAY [#f1]_    |         |
+| |list |ARRAY [#f1]_ |         |
 +-----------------+-----------------------+----------------+---------+
-|                 |struct                 |COMPOSITE TYPE  |         |
-|                 |                       | [#f1]_         |         |
+| |struct |COMPOSITE TYPE |         |
+| |                       | [#f1]_ |         |
 +-----------------+-----------------------+----------------+---------+
 
 .. rubric:: Footnotes
@@ -5762,7 +5762,7 @@ leverage the ``dtype_backend="pyarrow"`` argument of :func:`~pandas.read_sql`
 
 .. code-block:: ipython
 
-   # for roundtripping
+# For Roundtripping
    with pg_dbapi.connect(uri) as conn:
        df2 = pd.read_sql("pandas_table", conn, dtype_backend="pyarrow")
 
@@ -5818,13 +5818,13 @@ The following table lists supported data types for datetime data for some
 common databases. Other database dialects may have different data types for
 datetime data.
 
-===========   =============================================  ===================
-Database      SQL Datetime Types                             Timezone Support
-===========   =============================================  ===================
-SQLite        ``TEXT``                                       No
-MySQL         ``TIMESTAMP`` or ``DATETIME``                  No
-PostgreSQL    ``TIMESTAMP`` or ``TIMESTAMP WITH TIME ZONE``  Yes
-===========   =============================================  ===================
+=========== ============================================= ===================
+Database SQL Datetime Types Timezone Support
+=========== ============================================= ===================
+SQLite ``TEXT`` No
+MySQL ``TIMESTAMP`` or ``DATETIME`` No
+PostgreSQL ``TIMESTAMP`` or ``TIMESTAMP WITH TIME ZONE`` Yes
+=========== ============================================= ===================
 
 When writing timezone aware data to databases that do not support timezones,
 the data will be written as timezone naive timestamps that are in local time
@@ -5857,7 +5857,7 @@ Possible values are:
 Example of a callable using PostgreSQL `COPY clause
 <https://www.postgresql.org/docs/current/sql-copy.html>`__::
 
-  # Alternative to_sql() *method* for DBs that support COPY FROM
+# Alternative to_sql() *method* for DBs that Support COPY FROM
   import csv
   from io import StringIO
 
@@ -6012,11 +6012,11 @@ connecting to.
 
    engine = create_engine("mssql+pyodbc://mydsn")
 
-   # sqlite://<nohostname>/<path>
-   # where <path> is relative:
+# sqlite://<nohostname>/<path>
+# Where <path> is Relative:
    engine = create_engine("sqlite:///foo.db")
 
-   # or absolute, starting with a slash:
+# Or Absolute, Starting with a Slash:
    engine = create_engine("sqlite:////absolute/path/to/foo.db")
 
 For more information see the examples the SQLAlchemy `documentation <https://docs.sqlalchemy.org/en/latest/core/engines.html>`__
@@ -6120,11 +6120,11 @@ into a .dta file. The format version of this file is always 115 (Stata 12).
 
 *Stata* data files have limited data type support; only strings with
 244 or fewer characters, ``int8``, ``int16``, ``int32``, ``float32``
-and ``float64`` can be stored in ``.dta`` files.  Additionally,
+and ``float64`` can be stored in ``.dta`` files. Additionally,
 *Stata* reserves certain values to represent missing data. Exporting a
 non-missing value that is outside of the permitted range in Stata for
 a particular data type will retype the variable to the next larger
-size.  For example, ``int8`` values are restricted to lie between -127
+size. For example, ``int8`` values are restricted to lie between -127
 and 100 in Stata, and so variables with values above 100 will trigger
 a conversion to ``int16``. ``nan`` values in floating points data
 types are stored as the basic missing data type (``.`` in *Stata*).
@@ -6136,7 +6136,7 @@ types are stored as the basic missing data type (``.`` in *Stata*).
 
 The *Stata* writer gracefully handles other data types including ``int64``,
 ``bool``, ``uint8``, ``uint16``, ``uint32`` by casting to
-the smallest supported type that can represent the data.  For example, data
+the smallest supported type that can represent the data. For example, data
 with a type of ``uint8`` will be cast to ``int8`` if all values are less than
 100 (the upper bound for non-missing ``int8`` data in *Stata*), or, if values are
 outside of this range, the variable is cast to ``int16``.
@@ -6170,7 +6170,7 @@ be used to read the file incrementally.
 
 Specifying a ``chunksize`` yields a
 :class:`pandas.api.typing.StataReader` instance that can be used to
-read ``chunksize`` lines from the file at a time.  The ``StataReader``
+read ``chunksize`` lines from the file at a time. The ``StataReader``
 object can be used as an iterator.
 
 .. ipython:: python
@@ -6197,8 +6197,8 @@ also be retrieved by the function ``value_labels``, which requires :func:`~panda
 to be called before use.
 
 The parameter ``convert_missing`` indicates whether missing value
-representations in Stata should be preserved.  If ``False`` (the default),
-missing values are represented as ``np.nan``.  If ``True``, missing values are
+representations in Stata should be preserved. If ``False`` (the default),
+missing values are represented as ``np.nan``. If ``True``, missing values are
 represented using ``StataMissingValue`` objects, and columns containing missing
 values will have ``object`` data type.
 
@@ -6211,7 +6211,7 @@ values will have ``object`` data type.
 .. note::
 
    Setting ``preserve_dtypes=False`` will upcast to the standard pandas data types:
-   ``int64`` for all integer types and ``float64`` for floating point data.  By default,
+   ``int64`` for all integer types and ``float64`` for floating point data. By default,
    the Stata data types are preserved when importing.
 
 .. note::
@@ -6234,7 +6234,7 @@ Categorical data
 
 ``Categorical`` data can be exported to *Stata* data files as value labeled data.
 The exported data consists of the underlying category codes as integer data values
-and the categories as value labels.  *Stata* does not have an explicit equivalent
+and the categories as value labels. *Stata* does not have an explicit equivalent
 to a ``Categorical`` and information about *whether* the variable is ordered
 is lost when exporting.
 
@@ -6282,15 +6282,15 @@ The top-level function :func:`read_sas` can read (but not write) SAS
 XPORT (.xpt) and SAS7BDAT (.sas7bdat) format files.
 
 SAS files only contain two value types: ASCII text and floating point
-values (usually 8 bytes but sometimes truncated).  For xport files,
+values (usually 8 bytes but sometimes truncated). For xport files,
 there is no automatic type conversion to integers, dates, or
-categoricals.  For SAS7BDAT files, the format codes may allow date
-variables to be automatically converted to dates.  By default the
+categoricals. For SAS7BDAT files, the format codes may allow date
+variables to be automatically converted to dates. By default the
 whole file is read and returned as a ``DataFrame``.
 
 Specify a ``chunksize`` or use ``iterator=True`` to obtain reader
 objects (``XportReader`` or ``SAS7BDATReader``) for incrementally
-reading the file.  The reader objects also have attributes that
+reading the file. The reader objects also have attributes that
 contain additional information about the file and its variables.
 
 Read a SAS7BDAT file:
@@ -6326,7 +6326,7 @@ SPSS formats
 ------------
 
 The top-level function :func:`read_spss` can read (but not write) SPSS
-SAV (.sav) and  ZSAV (.zsav) format files.
+SAV (.sav) and ZSAV (.zsav) format files.
 
 SPSS files contain column names. By default the
 whole file is read, categorical columns are converted into ``pd.Categorical``,
@@ -6392,8 +6392,8 @@ ignored.
    <class 'pandas.core.frame.DataFrame'>
    RangeIndex: 1000000 entries, 0 to 999999
    Data columns (total 2 columns):
-   A    1000000 non-null float64
-   B    1000000 non-null int64
+   A 1000000 non-null float64
+   B 1000000 non-null int64
    dtypes: float64(1), int64(1)
    memory usage: 15.3 MB
 
