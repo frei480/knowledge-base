@@ -4,7 +4,7 @@ tags:
 ---
 
 видео https://www.youtube.com/watch?v=0y6RKiIk6cs
-Ржавчина для чайников за 12 минут
+Rust для чайников за 12 минут
 
 00:00 Введение в Rust
 
