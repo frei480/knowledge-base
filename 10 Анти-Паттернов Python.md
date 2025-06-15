@@ -3,7 +3,8 @@ tags:
   - python
   - АрхитектураПО
 ---
-https://www.youtube.com/watch?v=ts38mSIUPSg
+Пересказ видео: https://www.youtube.com/watch?v=ts38mSIUPSg
+Автор: Arjan Egges
 00:00 Введение
 
 • Некоторые шаблоны кода в Python могут вредить проекту.
@@ -824,3 +825,4 @@ from dataclasses import dataclass
 • Призыв к обсуждению анти-паттернов в комментариях.
 • Обещание показать полезность подсказок по типу в следующем видео.
 
+[[ППУ внедрение памятки анти-паттернов Python]]
