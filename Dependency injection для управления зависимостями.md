@@ -2,7 +2,9 @@
 tags:
   - АрхитектураПО
 ---
-
+см. также:
+- [[Dependency Injection основы и применение]]
+- [[Dependency INVERSION vs Dependency INJECTION in Python]]
 # Подробный Разбор [[Dependency Injection основы и применение|Dependency Injection]] (DI) Для Управления Зависимостями
 
 **Dependency Injection (DI)** — это архитектурный паттерн, реализующий принцип *Inversion of Control (IoC)*. Его суть: класс не создаёт свои зависимости самостоятельно, а получает их извне. Это фундаментальный подход для создания гибкого, тестируемого и поддерживаемого кода.
