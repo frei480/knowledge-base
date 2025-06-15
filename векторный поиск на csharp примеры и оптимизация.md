@@ -7,7 +7,7 @@ tags:
 
 ---
 
-### 1. Представление векторов
+# 1. Представление Векторов
 Используйте массивы `float[]` или библиотеку MathNet.Numerics для работы с векторами:
 ```csharp
 // Установите пакет: MathNet.Numerics
@@ -19,7 +19,7 @@ Vector<float> vector2 = Vector<float>.Build.Dense(new float[] {4, 5, 6});
 
 ---
 
-### 2. Метрика схожести
+# 2. Метрика Схожести
 Реализуйте функцию для вычисления **косинусного сходства**:
 ```csharp
 float CosineSimilarity(float[] a, float[] b)
@@ -47,7 +47,7 @@ float CosineSimilarity(float[] a, float[] b)
 
 ---
 
-### 3. Поиск ближайших векторов
+# 3. Поиск Ближайших Векторов
 Прогоните целевой вектор через коллекцию и найдите наиболее похожие:
 ```csharp
 List<float[]> vectors = ...; // Ваша коллекция векторов
@@ -65,7 +65,7 @@ var results = vectors
 
 ---
 
-### 4. Оптимизация (для больших данных)
+# 4. Оптимизация (для Больших данных)
 Для ускорения поиска используйте специализированные библиотеки или алгоритмы:
 - **ML.NET**: Интеграция с алгоритмами машинного обучения.
 - **FAISS** (через C++/CLI или REST API): Библиотека для эффективного векторного поиска.
@@ -73,7 +73,7 @@ var results = vectors
 
 ---
 
-### Пример с Elasticsearch
+# Пример С Elasticsearch
 ```csharp
 var settings = new ConnectionSettings(new Uri("http://localhost:9200"))
     .DefaultIndex("vectors");
@@ -96,7 +96,7 @@ var response = client.Search<VectorDocument>(s => s
 
 ---
 
-### Полезные ссылки
+# Полезные Ссылки
 1. **MathNet.Numerics**: [github.com/mathnet/mathnet-numerics](https://github.com/mathnet/mathnet-numerics)
 2. **ML.NET**: [dot.net/ml](https://dot.net/ml)
 3. **Elasticsearch Vector Search**: [elastic.co/guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/dense-vector.html)
