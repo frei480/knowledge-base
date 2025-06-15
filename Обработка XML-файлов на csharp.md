@@ -8,7 +8,7 @@ tags:
 
 ---
 
-### **1. Создание XML с вложенными тегами `<attribute>`**
+# **1. Создание XML С Вложенными Тегами `<attribute>`**
 ```csharp
 using System.Xml.Linq;
 
@@ -38,7 +38,7 @@ root.Save("attributes.xml");
 
 ---
 
-### **2. Динамическое создание из коллекции (списка/словаря)**
+# **2. Динамическое Создание Из Коллекции (списка/словаря)**
 Если атрибуты хранятся в коллекции:
 ```csharp
 var parameters = new Dictionary<string, object>
@@ -62,10 +62,10 @@ dynamicRoot.Save("dynamic_attributes.xml");
 
 ---
 
-### **3. Сериализация объекта в XML**
+# **3. Сериализация Объекта В XML**
 Создадим класс-модель и преобразуем его в XML:
 
-#### **3.1. Класс-модель**
+## **3.1. Класс-модель**
 ```csharp
 public class ParameterCollection
 {
@@ -79,7 +79,7 @@ public class ParameterAttribute
 }
 ```
 
-#### **3.2. Преобразование объекта в XML**
+## **3.2. Преобразование Объекта В XML**
 ```csharp
 var parameters = new ParameterCollection
 {
@@ -104,7 +104,7 @@ serializedXml.Save("serialized.xml");
 
 ---
 
-### **4. Чтение XML обратно в объект**
+# **4. Чтение XML Обратно В объект**
 ```csharp
 XDocument doc = XDocument.Load("serialized.xml");
 var loadedParameters = new ParameterCollection
@@ -130,8 +130,8 @@ private static object ParseValue(string value)
 
 ---
 
-### **5. Обработка сложных случаев**
-#### **5.1. Вложенные контейнеры**
+# **5. Обработка Сложных случаев**
+## **5.1. Вложенные контейнеры**
 Если атрибуты находятся внутри тега `<attributes>`:
 ```csharp
 XElement container = new XElement("Config",
@@ -142,7 +142,7 @@ XElement container = new XElement("Config",
 );
 ```
 
-#### **5.2. Проверка существования атрибутов**
+## **5.2. Проверка Существования атрибутов**
 ```csharp
 foreach (XElement attrElement in doc.Descendants("attribute"))
 {
@@ -158,7 +158,7 @@ foreach (XElement attrElement in doc.Descendants("attribute"))
 
 ---
 
-### **6. Советы**
+# **6. Советы**
 1. **Типы данных**: Атрибуты XML всегда строки. Используйте преобразование (например, `int.Parse`) при чтении.
 2. **Пространства имен**: Если нужно, добавьте их через `XNamespace`.
 3. **Валидация**: Используйте XSD для проверки структуры XML.
@@ -166,7 +166,7 @@ foreach (XElement attrElement in doc.Descendants("attribute"))
 
 ---
 
-### **Итоговый пример**
+# **Итоговый пример**
 ```csharp
 using System.Xml.Linq;
 

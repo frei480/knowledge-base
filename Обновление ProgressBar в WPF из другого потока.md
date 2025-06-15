@@ -5,16 +5,16 @@ tags:
 
 Для обновления ProgressBar в WPF с использованием паттерна MVVM из другого потока необходимо учитывать следующие аспекты:
 
-### 1. Привязка данных в XAML
+# 1. Привязка Данных В XAML
 Убедитесь, что ProgressBar привязан к свойству ViewModel:
 ```xml
 <ProgressBar Minimum="0" Maximum="100" Value="{Binding ProgressValue}" />
 ```
 
-### 2. Реализация ViewModel
+# 2. Реализация ViewModel
 Используйте `INotifyPropertyChanged` для уведомления об изменениях свойства.
 
-#### 2.1. Использование `IProgress<T>` (рекомендуется для асинхронных операций)
+## 2.1. Использование `IProgress<T>` (рекомендуется Для Асинхронных операций)
 ```csharp
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -58,7 +58,7 @@ public class MyViewModel : INotifyPropertyChanged
 }
 ```
 
-#### 2.2. Использование `SynchronizationContext` (для ручного управления потоками)
+## 2.2. Использование `SynchronizationContext` (для Ручного Управления потоками)
 ```csharp
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -100,7 +100,7 @@ public class MyViewModel : INotifyPropertyChanged
 }
 ```
 
-### 3. Запуск операции
+# 3. Запуск Операции
 ```csharp
 // В команде или другом методе ViewModel
 await StartLongOperationAsync();
@@ -116,7 +116,7 @@ Task.Run(() =>
 });
 ```
 
-### Основные моменты:
+# Основные Моменты:
 1. **`IProgress<T>`** автоматически маршалит вызовы в UI-поток, если создан в нём.
 2. **`SynchronizationContext`** позволяет вручную управлять потоком выполнения.
 3. Всегда проверяйте контекст синхронизации при работе с потоками.

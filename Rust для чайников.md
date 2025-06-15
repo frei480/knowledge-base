@@ -179,9 +179,9 @@ impl User{
 ```
 • В Rust не нужно беспокоиться об исключениях, вместо этого используется enum-обертка для обработки ошибок.
 ```rust
-	pub fn from_user_profile(profile: &UserProfile) -> Result<Self, String>{
+	pub fn from_user_profile(profile: &UserProfile) -> Result<Self, String> {
 	  let display_name = profile.get_display_name();
-	  match display_name{
+	  match display_name {
 		  Some(name) => Ok(User::new(display_name)),
 		  None => Err("No display name found".to_string()),
 	  }	  

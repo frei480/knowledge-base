@@ -10,9 +10,9 @@ tags:
 
 ---
 
-### **Шаги для использования Reflection с управляемой DLL**
+# **Шаги Для Использования Reflection С Управляемой DLL**
 
-#### 1. **Загрузите DLL**
+## 1. **Загрузите DLL**
 Используйте `Assembly.LoadFrom` или `Assembly.LoadFile`:
 ```csharp
 using System.Reflection;
@@ -21,7 +21,7 @@ using System.Reflection;
 Assembly myDll = Assembly.LoadFrom(@"C:\Путь\к\YourLibrary.dll");
 ```
 
-#### 2. **Получите тип (класс) из DLL**
+## 2. **Получите Тип (класс) Из DLL**
 ```csharp
 // Получить тип по полному имени (Namespace + ClassName)
 Type targetType = myDll.GetType("YourLibrary.Namespace.ClassName");
@@ -30,7 +30,7 @@ Type targetType = myDll.GetType("YourLibrary.Namespace.ClassName");
 // Type mathType = myDll.GetType("Calculator.MathHelper");
 ```
 
-#### 3. **Создайте экземпляр класса**
+## 3. **Создайте Экземпляр класса**
 ```csharp
 // Создание объекта через Activator
 object instance = Activator.CreateInstance(targetType);
@@ -39,7 +39,7 @@ object instance = Activator.CreateInstance(targetType);
 // object instance = Activator.CreateInstance(targetType, аргументы);
 ```
 
-#### 4. **Получите метод и вызовите его**
+## 4. **Получите Метод И Вызовите его**
 ```csharp
 // Получить метод по имени и параметрам
 MethodInfo method = targetType.GetMethod("MethodName");
@@ -54,7 +54,7 @@ Console.WriteLine($"Результат: {result}"); // 8
 
 ---
 
-### **Пример: Полный код**
+# **Пример: Полный код**
 ```csharp
 using System;
 using System.Reflection;
@@ -85,16 +85,16 @@ public class Program
 
 ---
 
-### **Особые случаи**
+# **Особые случаи**
 
-#### 1. **Вызов статического метода**
+## 1. **Вызов Статического метода**
 Если метод статический, передавайте `null` вместо экземпляра:
 ```csharp
 MethodInfo staticMethod = targetType.GetMethod("StaticMethod");
 staticMethod.Invoke(null, new object[] { параметры });
 ```
 
-#### 2. **Работа с приватными методами**
+## 2. **Работа С Приватными методами**
 Используйте `BindingFlags`:
 ```csharp
 MethodInfo privateMethod = targetType.GetMethod("SecretMethod", 
@@ -103,7 +103,7 @@ MethodInfo privateMethod = targetType.GetMethod("SecretMethod",
 privateMethod.Invoke(instance, new object[] { });
 ```
 
-#### 3. **Получение всех методов класса**
+## 3. **Получение Всех Методов класса**
 ```csharp
 foreach (MethodInfo method in targetType.GetMethods())
 {
@@ -112,7 +112,7 @@ foreach (MethodInfo method in targetType.GetMethods())
 }
 ```
 
-#### 4. **Работа с параметрами out/ref**
+## 4. **Работа С Параметрами out/ref**
 ```csharp
 MethodInfo methodWithOutParam = targetType.GetMethod("TryParse");
 object[] args = new object[] { "123", null }; // out параметр инициализируется как null
@@ -122,7 +122,7 @@ int parsedValue = (int)args[1]; // Получить значение из out
 
 ---
 
-### **Обработка исключений**
+# **Обработка исключений**
 - **FileNotFoundException**: DLL не найдена.
 - **TypeLoadException**: Не удалось загрузить тип.
 - **MissingMethodException**: Метод не существует.
@@ -142,7 +142,7 @@ catch (TargetInvocationException ex)
 
 ---
 
-### **Плюсы и минусы Reflection**
+# **Плюсы И Минусы Reflection**
 - **Плюсы**:
   - Динамическая загрузка библиотек.
   - Возможность интроспекции (анализа типов, методов, свойств).
@@ -153,7 +153,7 @@ catch (TargetInvocationException ex)
 
 ---
 
-### **Пример: Загрузка плагина**
+# **Пример: Загрузка плагина**
 ```csharp
 // Интерфейс для плагина
 public interface IPlugin
@@ -177,7 +177,7 @@ if (pluginType != null)
 
 ---
 
-### **Итог**
+# **Итог**
 Reflection — мощный инструмент для динамической работы с DLL, но используйте его осторожно:
 - Применяйте только там, где нельзя обойтись прямыми ссылками.
 - Всегда обрабатывайте исключения.
