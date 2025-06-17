@@ -1,0 +1,19 @@
+{
+  "templater-obsidian:create-templater/Шаблон книги.md": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "B"
+    }
+  ],
+  "templater-obsidian:templater/Шаблон книги.md": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "B"
+    }
+  ]
+}
