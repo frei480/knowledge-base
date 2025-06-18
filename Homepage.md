@@ -1,0 +1,6 @@
+---
+css: dashboard
+---
+
+# Python
+![[Python]]

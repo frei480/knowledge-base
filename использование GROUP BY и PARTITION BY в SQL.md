@@ -21,6 +21,7 @@ FROM employees
 GROUP BY department;
 ```
 Результат:
+
 | department | total_salary |
 |------------|--------------|
 | IT         | 50000        |
@@ -42,6 +43,7 @@ SELECT name, department, salary,
 FROM employees;
 ```
 Результат (сохраняются все строки):
+
 | name  | department | salary | dept_total_salary |
 |-------|------------|--------|--------------------|
 | Alice | IT         | 30000  | 50000             |
