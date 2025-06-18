@@ -34,5 +34,6 @@
   "omnisearch",
   "obsidian-tracker",
   "obsidian-csv-table",
-  "obsidian-table-generator"
+  "obsidian-table-generator",
+  "obsidian-importer"
 ]
