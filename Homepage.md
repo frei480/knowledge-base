@@ -1,6 +1,9 @@
 ---
 css: dashboard
 ---
+# C Sharp
+> [!Error]+
+> ![[csharp]]
 
 # Python
 > [!TIP]-
@@ -13,3 +16,12 @@ css: dashboard
 # SQL
 > [!TIP]-
 ![[SQL]]
+
+# Архитектура ПО
+> [!TIP]-
+![[Архитектура ПО]]
+
+# Excel
+> [!TIP]+
+> ![[Excel]]
+
