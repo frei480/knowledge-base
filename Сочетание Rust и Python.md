@@ -2,11 +2,11 @@
 tags:
   - python
   - rust
----
-пересказ видео https://www.youtube.com/watch?v=lyG6AKzu4ew
 Автор: Arjan Egges
-Сочетание Rust и Python: Лучшее из Обоих Миров?
-
+Ссылка: https://www.youtube.com/watch?v=lyG6AKzu4ew
+Тип: Пересказ видео
+Название: "Сочетание Rust И Python: Лучшее Из Обоих Миров?"
+---
 00:00 Введение
 
 • Python известен своей дружественностью, но не скоростью и безопасностью типов.

@@ -2,11 +2,11 @@
 tags:
   - docker
   - python
+Автор: Arjan Egges
+Ссылка: https://www.youtube.com/watch?v=tc713anE3UY
+Тип: Пересказ видео
+Название: Как Уменьшить Размер Вашего образа Python Docker На 80%
 ---
-
-пересказ видео https://www.youtube.com/watch?v=tc713anE3UY
-Как уменьшить размер Вашего Изображения Python Docker на 80%
-
 00:00 Введение в Docker
 
 • Docker может стать сложным, если не оптимизировать файл Docker.

@@ -2,10 +2,12 @@
 tags:
   - python
   - rust
----
-Пересказ видео https://www.youtube.com/watch?v=MoqtsYLGCC4
 Автор: Arjan Egges
-An Introduction to Coding In Rust for Pythonistas
+Ссылка: https://www.youtube.com/watch?v=MoqtsYLGCC4
+Тип: Пересказ видео
+Название: An Introduction to Coding In Rust for Pythonistas
+---
+# An Introduction to Coding In Rust for Pythonistas
 
 00:00 Введение в Rust
 

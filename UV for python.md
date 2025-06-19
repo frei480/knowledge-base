@@ -1,10 +1,11 @@
 ---
 tags:
   - python
+Автор: Arjan Egges
+Ссылка: https://www.youtube.com/watch?v=qh98qOND6MI
+Тип: Пересказ видео
+Название: UV for Python… (Almost) All Batteries Included
 ---
-пересказ видео https://www.youtube.com/watch?v=qh98qOND6MI
-UV for Python… (Almost) All Batteries Included
-
 # Введение В UV
 
 - UV объединяет множество функций в одном инструменте и работает быстро.

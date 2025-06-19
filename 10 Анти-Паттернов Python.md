@@ -2,9 +2,11 @@
 tags:
   - python
   - АрхитектураПО
----
-Пересказ видео: https://www.youtube.com/watch?v=ts38mSIUPSg
 Автор: Arjan Egges
+Ссылка: https://www.youtube.com/watch?v=ts38mSIUPSg
+Тип: Пересказ видео
+Название: 10 Анти-Паттернов Python
+---
 00:00 Введение
 
 • Некоторые шаблоны кода в Python могут вредить проекту.

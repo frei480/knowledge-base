@@ -2,12 +2,12 @@
 tags:
   - АрхитектураПО
   - python
----
-
-Пересказ видео: https://www.youtube.com/watch?v=2ejbLVkCndI
-Dependency INVERSION vs Dependency INJECTION in Python
 Автор: Arjan Egges
-ИНВЕРСИЯ ЗАВИСИМОСТЕЙ против ВНЕДРЕНИЯ зависимостей в Python
+Ссылка: https://www.youtube.com/watch?v=2ejbLVkCndI
+Тип: Пересказ видео
+Название: Dependency INVERSION vs Dependency INJECTION in Python
+---
+# ИНВЕРСИЯ ЗАВИСИМОСТЕЙ Против ВНЕДРЕНИЯ Зависимостей В Python
 
 00:00 Введение в зависимости и инверсию зависимостей
 

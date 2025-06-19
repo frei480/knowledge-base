@@ -1,11 +1,11 @@
 ---
 tags:
   - python
+Автор: Jakub Beránek
+Ссылка: https://www.youtube.com/watch?v=OFRLKWacOoA
+Тип: Пересказ видео
+Название: Writing Python like it's Rust - more robust code with type hints
 ---
-
-пересказ видео https://www.youtube.com/watch?v=OFRLKWacOoA
-Writing Python like it's Rust - more robust code with type hints — Jakub Beránek
-
 00:04 Введение
 
 • Лекция о том, как писать на Python, как на Rust, основана на статье автора.

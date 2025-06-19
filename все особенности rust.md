@@ -1,9 +1,11 @@
 ---
 tags:
   - rust
+Ссылка: https://www.youtube.com/watch?v=784JWR4oxOI
+Тип: Пересказ видео
+Название: All Rust features explained
 ---
-Пересказ видео:https://www.youtube.com/watch?v=784JWR4oxOI
-Объяснены все особенности Rust
+# Объяснены Все Особенности Rust
 
 00:00 Введение в Rust
 

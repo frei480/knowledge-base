@@ -1,11 +1,11 @@
 ---
 tags:
   - rust
+Ссылка: https://www.youtube.com/watch?v=0y6RKiIk6cs
+Тип: Пересказ видео
+Автор: Let's Get Rusty
+Название: Rust for Dummies in 12 Minutes
 ---
-
-видео https://www.youtube.com/watch?v=0y6RKiIk6cs
-Rust для чайников за 12 минут
-
 00:00 Введение в Rust
 
 • Rust предлагает уникальные возможности, которые делают его привлекательным для изучения.
