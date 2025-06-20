@@ -2,7 +2,7 @@
 css: dashboard
 ---
 # C Sharp
-> [!Error]+
+> [!Error]-
 > ![[csharp]]
 
 # Python
