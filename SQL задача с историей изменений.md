@@ -1,3 +1,8 @@
+---
+tags:
+  - SQL
+---
+
 Допустим, в базе данных ms sql есть вот такая объединенная таблица истории изменений документа, в ней сам документ и его изменения, отсортированные по дате,
 
 | document inventory number | notice inventory number | denotation  | date       |
