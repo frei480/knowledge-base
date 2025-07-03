@@ -6,7 +6,7 @@ Of course. You can do this by looping through your IDs and inserting the results
 
 The most common way to loop through records is by using a **CURSOR**.
 
-### Using a CURSOR to Save Results
+# Using a CURSOR to Save Results
 
 Here's how you can call a stored procedure for each ID and save the combined records.
 
@@ -76,7 +76,7 @@ SELECT * FROM dbo.CombinedResults;
 
 ---
 
-### Alternative: Using a `WHILE` Loop
+# Alternative: Using a `WHILE` Loop
 
 A `WHILE` loop can be slightly more performant than a cursor but involves a bit more setup.
 
