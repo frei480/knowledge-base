@@ -21,7 +21,6 @@ tags:
     - Создавайте индексы на столбцах, используемых в `WHERE`, `JOIN` и `ORDER BY`: Это значительно ускорит поиск данных. 
     - Используйте `CREATE INDEX`: Создавайте индексы с умом, избегая избыточного индексирования. 
     - **Поддерживайте актуальность статистики:** Регулярно запускайте `ANALYZE` и `VACUUM`. 
-4. **4.** **[Кэширование](https://www.google.com/search?client=ms-android-google&sca_esv=e513580c53be6c7f&cs=1&sxsrf=AE3TifOa5uObnGbqSDAbn4-RaNPx6EROZQ%3A1754641073903&q=%D0%9A%D1%8D%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5&sa=X&ved=2ahUKEwiX-7Ku4_qOAxUwQUEAHccnIKUQxccNegQIQxAC&mstk=AUtExfBJS0bHsf6o7BXCJ9bZgVIAZoqfGMaStFJBpMoA59JjGW7tTinew8QtYJCUU3DErXXVPa7iSIfsF_ZxuYCKTomahARWD6EEvseyxBIbc55Z00kH9IuHpgpfaTelc33I7um4rbzZJFd0SsPLubQPlB1LMj0hDnEvoXWD5XH-QCIFr7o&csui=3):**
-    
-    - **Используйте [Query Cache](https://www.google.com/search?client=ms-android-google&sca_esv=e513580c53be6c7f&cs=1&sxsrf=AE3TifOa5uObnGbqSDAbn4-RaNPx6EROZQ%3A1754641073903&q=Query+Cache&sa=X&ved=2ahUKEwiX-7Ku4_qOAxUwQUEAHccnIKUQxccNegQIFhAB&mstk=AUtExfBJS0bHsf6o7BXCJ9bZgVIAZoqfGMaStFJBpMoA59JjGW7tTinew8QtYJCUU3DErXXVPa7iSIfsF_ZxuYCKTomahARWD6EEvseyxBIbc55Z00kH9IuHpgpfaTelc33I7um4rbzZJFd0SsPLubQPlB1LMj0hDnEvoXWD5XH-QCIFr7o&csui=3):** Кэшируйте часто выполняемые запросы. 
+4. **4.** **[Кэширование]:**
+    **Используйте [Query Cache]:** Кэшируйте часто выполняемые запросы. 
     - **Используйте [Prepared Statements](https://www.google.com/search?client=ms-android-google&sca_esv=e513580c53be6c7f&cs=1&sxsrf=AE3TifOa5uObnGbqSDAbn4-RaNPx6EROZQ%3A1754641073903&q=Prepared+Statements&sa=X&ved=2ahUKEwiX-7Ku4_qOAxUwQUEAHccnIKUQxccNegQIGRAB&mstk=AUtExfBJS0bHsf6o7BXCJ9bZgVIAZoqfGMaStFJBpMoA59JjGW7tTinew8QtYJCUU3DErXXVPa7iSIfsF_ZxuYCKTomahARWD6EEvseyxBIbc55Z00kH9IuHpgpfaTelc33I7um4rbzZJFd0SsPLubQPlB1LMj0hDnEvoXWD5XH-QCIFr7o&csui=3):** Повторно используйте скомпилированные запросы.
