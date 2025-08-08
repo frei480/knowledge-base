@@ -1,0 +1,27 @@
+---
+tags:
+  - SQL
+---
+Для ускорения выполнения запросов в PostgreSQL существует несколько эффективных стратегий, включая оптимизацию запросов, настройку конфигурации базы данных, использование индексов и кэширование. Оптимизация запросов включает в себя уменьшение количества обрабатываемых данных, использование правильных типов соединений, избегание `SELECT *` и использование оператора `ANY(ARRAY[])` вместо `IN` для определенных случаев. Настройка конфигурации включает в себя установку параметров, таких как `work_mem`, для оптимизации использования памяти и диска, а также настройку параметров соединений (hash join, merge join, nested loop). Индексы, особенно на столбцах, используемых в WHERE, JOIN и ORDER BY, могут значительно ускорить поиск данных. Кэширование, включая использование `query_cache_size` и `prepared statements`, может уменьшить количество обращений к базе данных. 
+
+Подробное рассмотрение:
+
+1. **1.** **[[Оптимизация запросов в PostgreSQL]]:**
+    - Избегайте `SELECT *`: Выбирайте только необходимые столбцы, особенно в больших таблицах с JSON и TEXT. 
+    - Используйте `WHERE` для фильтрации: Уменьшайте количество строк, обрабатываемых запросом, на ранних этапах. 
+    - **Ограничивайте количество возвращаемых строк:** Используйте `LIMIT` для уменьшения объема данных, возвращаемых запросом. 
+    - **Используйте правильные типы соединений:** Вместо `INNER JOIN` в некоторых случаях может быть более эффективен `LEFT JOIN`, а для больших наборов данных `hash join` или `merge join`. 
+    - `ANY(ARRAY[])` вместо `IN`: В некоторых случаях этот оператор может быть быстрее, особенно при работе с большими списками значений. 
+    - Используйте `EXPLAIN ANALYZE`: Этот инструмент позволяет понять, как реально выполняется запрос, и выявить узкие места. 
+2. **2.** **[[Настройка конфигурации PostgreSQL]]:**
+    - `work_mem`: Увеличивайте этот параметр, чтобы уменьшить использование диска при обработке больших запросов. 
+    - **Параметры соединений:** Настройте `enable_hashjoin`, `enable_mergejoin`, `enable_nestloop` в зависимости от типа запроса и структуры данных. 
+    - `log_min_duration_statement`: Используйте этот параметр для логирования медленных запросов и их последующей оптимизации. 
+3. **3.** **[Индексирование]:**
+    - Создавайте индексы на столбцах, используемых в `WHERE`, `JOIN` и `ORDER BY`: Это значительно ускорит поиск данных. 
+    - Используйте `CREATE INDEX`: Создавайте индексы с умом, избегая избыточного индексирования. 
+    - **Поддерживайте актуальность статистики:** Регулярно запускайте `ANALYZE` и `VACUUM`. 
+4. **4.** **[Кэширование](https://www.google.com/search?client=ms-android-google&sca_esv=e513580c53be6c7f&cs=1&sxsrf=AE3TifOa5uObnGbqSDAbn4-RaNPx6EROZQ%3A1754641073903&q=%D0%9A%D1%8D%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5&sa=X&ved=2ahUKEwiX-7Ku4_qOAxUwQUEAHccnIKUQxccNegQIQxAC&mstk=AUtExfBJS0bHsf6o7BXCJ9bZgVIAZoqfGMaStFJBpMoA59JjGW7tTinew8QtYJCUU3DErXXVPa7iSIfsF_ZxuYCKTomahARWD6EEvseyxBIbc55Z00kH9IuHpgpfaTelc33I7um4rbzZJFd0SsPLubQPlB1LMj0hDnEvoXWD5XH-QCIFr7o&csui=3):**
+    
+    - **Используйте [Query Cache](https://www.google.com/search?client=ms-android-google&sca_esv=e513580c53be6c7f&cs=1&sxsrf=AE3TifOa5uObnGbqSDAbn4-RaNPx6EROZQ%3A1754641073903&q=Query+Cache&sa=X&ved=2ahUKEwiX-7Ku4_qOAxUwQUEAHccnIKUQxccNegQIFhAB&mstk=AUtExfBJS0bHsf6o7BXCJ9bZgVIAZoqfGMaStFJBpMoA59JjGW7tTinew8QtYJCUU3DErXXVPa7iSIfsF_ZxuYCKTomahARWD6EEvseyxBIbc55Z00kH9IuHpgpfaTelc33I7um4rbzZJFd0SsPLubQPlB1LMj0hDnEvoXWD5XH-QCIFr7o&csui=3):** Кэшируйте часто выполняемые запросы. 
+    - **Используйте [Prepared Statements](https://www.google.com/search?client=ms-android-google&sca_esv=e513580c53be6c7f&cs=1&sxsrf=AE3TifOa5uObnGbqSDAbn4-RaNPx6EROZQ%3A1754641073903&q=Prepared+Statements&sa=X&ved=2ahUKEwiX-7Ku4_qOAxUwQUEAHccnIKUQxccNegQIGRAB&mstk=AUtExfBJS0bHsf6o7BXCJ9bZgVIAZoqfGMaStFJBpMoA59JjGW7tTinew8QtYJCUU3DErXXVPa7iSIfsF_ZxuYCKTomahARWD6EEvseyxBIbc55Z00kH9IuHpgpfaTelc33I7um4rbzZJFd0SsPLubQPlB1LMj0hDnEvoXWD5XH-QCIFr7o&csui=3):** Повторно используйте скомпилированные запросы.
