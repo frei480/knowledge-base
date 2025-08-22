@@ -1,6 +1,5 @@
 [
   "obsidian-book-search-plugin",
-  "buttons",
   "calendar",
   "dataview",
   "obsidian-excalidraw-plugin",
@@ -35,5 +34,6 @@
   "obsidian-tracker",
   "obsidian-csv-table",
   "obsidian-table-generator",
-  "obsidian-importer"
+  "obsidian-importer",
+  "buttons"
 ]
