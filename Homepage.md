@@ -24,6 +24,6 @@ css: dashboard
 # Excel
 > [!TIP]+
 > ![[Excel]]
-
+# ML
 > [!TIP]+
 > ![[ML]]
