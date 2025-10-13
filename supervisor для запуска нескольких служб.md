@@ -118,9 +118,112 @@ stdout_logfile=/var/log/celery.out.log
     - `autorestart`: Перезапускать ли службу, если она "упала".
     - `stdout_logfile`, `stderr_logfile`: Пути к логам стандартного вывода и вывода ошибок. Это очень удобно для отладки.
 
-# **Шаг 3: Dockerfile**
+## Если Нужно Будет Накатить Миграции В БД Перед Запуском Приложений
+Просто запустить сервисы недостаточно — нужно убедиться, что состояние базы данных (ее схема) соответствует тому, чего ожидает код.
+Запуск миграций — это **одноразовая задача**, которая должна выполниться **до** запуска основных, долгоживущих процессов (таких как Gunicorn). Supervisor не очень хорошо подходит для таких одноразовых задач, так как он предназначен для управления _постоянно работающими_ процессами. Если вы добавите миграцию как `[program]`, Supervisor будет пытаться перезапустить ее после успешного завершения.
 
-Теперь соберем все это вместе в `Dockerfile`.
+Поэтому правильным решением будет использовать **скрипт-точку входа (entrypoint script)**.
+### **Идея**
+1. Мы создадим небольшой shell-скрипт (`entrypoint.sh`).
+2. Этот скрипт будет запускаться первым при старте контейнера.
+3. Внутри скрипта мы:
+    a. Сначала дождемся, пока база данных станет доступна. Это критически важно, так как контейнер с приложением может запуститься быстрее, чем контейнер с БД.
+    b. Затем выполним команду для накатывания миграций (например, flask db upgrade или python manage.py migrate).
+    c. И только после этого передадим управление основному процессу, который мы хотели запустить изначально, — Supervisor.
+4. Мы обновим наш `Dockerfile` и `docker-compose.yml`, чтобы все это заработало вместе.
+---
+
+### **Шаг 1: `docker-compose.yml`**
+
+Давайте добавим в наш `docker-compose.yml` сервис базы данных (например, PostgreSQL) и настроим переменные окружения.
+```YAML
+version: '3.9'
+
+services:
+  app:
+    container_name: my-multi-service-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/app
+    environment:
+      # Переменные для подключения к БД. Приложение должно их использовать.
+      - DATABASE_URL=postgresql://user:password@db:5432/mydatabase
+    depends_on:
+      # Говорим, что наш 'app' сервис зависит от 'db'.
+      # Compose запустит 'db' перед 'app'.
+      # Внимание: depends_on ждет только запуска контейнера, а не готовности БД!
+      db:
+        condition: service_started
+    restart: unless-stopped
+
+  db:
+    # Используем официальный образ Postgres
+    image: postgres:14-alpine
+    container_name: my-app-db
+    environment:
+      # Эти переменные используются образом Postgres для инициализации БД
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydatabase
+    volumes:
+      # Сохраняем данные БД между перезапусками контейнера
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      # Можно открыть порт для подключения к БД с хоста (для отладки)
+      - "5433:5432"
+
+volumes:
+  postgres_data:
+    # Создаем именованный volume для данных БД
+```
+
+### **Шаг 2: Создание Скрипта `entrypoint.sh`**
+
+Создайте этот файл в корневой директории вашего проекта.
+```Bash
+#!/bin/sh
+
+# Выходим из скрипта, если любая команда завершится с ошибкой
+set -e
+
+# Разбираем URL базы данных на хост и порт
+# Пример: postgresql://user:password@db:5432/mydatabase
+# Нам нужны 'db' и '5432'
+DB_HOST=$(echo $DATABASE_URL | awk -F'[@:/]' '{print $7}')
+DB_PORT=$(echo $DATABASE_URL | awk -F'[:/]' '{print $6}')
+
+echo "Ожидание запуска PostgreSQL на хосте ${DB_HOST} и порту ${DB_PORT}..."
+
+# Цикл ожидания доступности порта БД. Используем netcat (nc).
+# pg_isready - более надежный способ для Postgres. Установите postgresql-client для этого.
+while ! nc -z $DB_HOST $DB_PORT; do
+  sleep 0.1
+done
+
+echo "PostgreSQL запущен!"
+
+# Теперь, когда БД доступна, накатываем миграции.
+# Замените эту команду на свою.
+echo "Применение миграций базы данных..."
+flask db upgrade # Например, для Flask-Migrate
+# или: python manage.py migrate # Например, для Django
+
+echo "Миграции применены."
+
+# exec "$@" - это ключевая команда.
+# Она заменяет текущий процесс (скрипт) на команду,
+# переданную в CMD Dockerfile (в нашем случае, supervisord).
+# Это нужно, чтобы supervisord стал главным процессом (PID 1) в контейнере.
+exec "$@"
+```
+
+### **Шаг 3: Обновление `Dockerfile`**
+
+Нам нужно добавить в `Dockerfile` команды для копирования нашего нового скрипта и указать, что он должен быть точкой входа.
 ```Dockerfile
 # 1. Выбираем базовый образ
 FROM python:3.9-slim
@@ -128,15 +231,18 @@ FROM python:3.9-slim
 # 2. Устанавливаем переменные окружения
 ENV PYTHONUNBUFFERED 1
 
-# 3. Устанавливаем необходимые пакеты: supervisor, nginx и другие
+# 3. Устанавливаем необходимые пакеты
+# Добавляем netcat-openbsd для проверки доступности порта и postgresql-client для pg_isready
 RUN apt-get update && apt-get install -y \
     supervisor \
     nginx \
     curl \
+    netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
-# 4. Устанавливаем Python-зависимости
-RUN pip install flask gunicorn
+# 4. Устанавливаем Python-зависимости (добавьте нужные для миграций)
+# Например, Flask-Migrate, psycopg2-binary
+RUN pip install flask gunicorn flask-migrate psycopg2-binary
 
 # 5. Копируем код приложения
 COPY ./app /app
@@ -145,68 +251,33 @@ COPY ./app /app
 COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-# 7. Создаем директории для логов, указанные в supervisord.conf
+# 7. Создаем директории для логов
 RUN mkdir -p /var/log/gunicorn /var/log/nginx /var/log/celery
 
-# 8. Открываем порт, который слушает Nginx
+# 8. Копируем и делаем исполняемым наш entrypoint скрипт
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# 9. Открываем порт
 EXPOSE 80
 
-# 9. Запускаем Supervisor!
-# Это будет основной процесс (PID 1) в контейнере.
+# 10. Указываем наш скрипт как точку входа
+ENTRYPOINT ["/entrypoint.sh"]
+
+# 11. Запускаем Supervisor через CMD.
+# Эта команда будет передана в `exec "$@"` в нашем entrypoint скрипте.
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 ```
 
-**Разбор `Dockerfile`:**
+### **Итоговый Порядок запуска**
 
-1. Мы используем базовый образ с Python.
-2. Устанавливаем системные пакеты `supervisor` и `nginx`.
-3. Устанавливаем Python-библиотеки.
-4. Копируем наше приложение и файлы конфигурации в нужные места внутри образа.
-5. **Важно:** Копируем `supervisord.conf` в `/etc/supervisor/conf.d/`. Supervisor автоматически подхватывает конфигурационные файлы из этой директории.
-6. Создаем папки для логов.
-7. `EXPOSE 80` информирует Docker, что контейнер будет слушать этот порт.
-8. `CMD ["/usr/bin/supervisord", …]` — это команда, которая запускается при старте контейнера. Она запускает Supervisor, который, в свою очередь, запускает и контролирует все наши службы (Gunicorn, Nginx, Celery) в соответствии с файлом конфигурации.
+Теперь, когда вы выполните `docker-compose up`, произойдет следующее:
+1. Docker Compose запустит сервис `db`.
+2. После старта контейнера `db`, Compose запустит контейнер `app` (из-за `depends_on`).
+3. Внутри контейнера `app` первым делом запустится `ENTRYPOINT` — наш скрипт `/entrypoint.sh`.
+4. Скрипт войдет в цикл и будет ждать, пока порт `5432` на хосте `db` станет доступен.
+5. Как только порт станет доступен, скрипт выполнит команду миграции `flask db upgrade`.
+6. После успешного выполнения миграции, команда `exec "$@"` запустит `CMD` из Dockerfile, то есть `/usr/bin/supervisord …`.
+7. Supervisor запустится и поднимет все ваши сервисы (Gunicorn, Nginx, Celery), которые теперь будут работать с уже обновленной базой данных.
 
-# **Шаг 4: Сборка И Запуск контейнера**
-
-1. Перейдите в корневую директорию проекта (`my-multi-service-app`).
-2. **Соберите образ:**
-```Bash
-docker build -t my-multi-service-app .
-```
-3. **Запустите контейнер:**
-```Bash
-docker run -d -p 8080:80 --name my-app-instance my-multi-service-app
-```
-- `-d` — запуск в фоновом режиме.
-- `-p 8080:80` — проброс порта 8080 вашего компьютера на порт 80 внутри контейнера.
-- `--name` — удобное имя для контейнера.
-
-# **Шаг 5: Проверка**
-1. **Проверьте веб-приложение:** Откройте в браузере `http://localhost:8080`. Вы должны увидеть сообщение "Привет от Flask, Gunicorn и Nginx!".
-2. **Посмотрите логи внутри контейнера:** Вы можете подключиться к контейнеру и посмотреть, что происходит.
-```Bash
-docker exec -it my-app-instance bash
-```
-    
-Внутри контейнера можно посмотреть логи:
-```Bash
-tail -f /var/log/gunicorn.out.log
-tail -f /var/log/nginx.out.log
-tail -f /var/log/celery.out.log
-```
-
-Или использовать утилиту `supervisorctl`:
-```Bash
-supervisorctl status
-```
-
-Вывод будет примерно таким:
-```
-celery                           RUNNING   pid 10, uptime 0:05:12
-gunicorn                         RUNNING   pid 8, uptime 0:05:12
-nginx                            RUNNING   pid 9, uptime 0:05:12
-```
-
-
-Этот пример наглядно демонстрирует, как Supervisor действует в роли "менеджера процессов" внутри контейнера, позволяя вам запускать и контролировать несколько служб как единое целое.
+Этот подход является надежным и общепринятым стандартом для решения подобных задач при контейнеризации приложений.
