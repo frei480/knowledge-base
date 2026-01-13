@@ -27,3 +27,8 @@ css: dashboard
 # ML
 > [!TIP]+
 > ![[ML]]
+
+```dataview
+LIST
+WHERE file.ctime >= date(today)
+```
