@@ -181,7 +181,7 @@ RAG, или Retrieval-Augmented Generation, представляет собой 
 
 1. Understanding the limitations and challenges of RAG systems https://www.techtarget.com/searchenterpriseai/tip/Understanding-the-limitations-and-challenges-of-RAG-systems
 2. Limitations of the RAG Approach in AI https://www.linkedin.com/top-content/artificial-intelligence/ai-limitations-overview/limitations-of-the-rag-approach-in-ai/
-3. A Survey on Reasoning Agentic Retrieval-Augmented Generation for Industry Challenges  https://arxiv.org/html/2506.10408v1
+3. A Survey on Reasoning Agentic Retrieval-Augmented Generation for Industry Challenges https://arxiv.org/html/2506.10408v1
 4. Hallucination Mitigation for Retrieval-Augmented Large Language Models https://www.mdpi.com/2227-7390/13/5/856
 5. RAG, AI Agents, and Agentic RAG: An In-Depth Review https://www.digitalocean.com/community/conceptual-articles/rag-ai-agents-agentic-rag-comparative-analysis
 6. LLM для больших моделей | Как выбрать фреймворк для ИИ-агентов? Сравнение пяти основных фреймворков для ИИ-агентов (LangChain, LangGraph, CrewAI, Semantic Kernel, AutoGen) https://blog.csdn.net/Androiddddd/article/details/142629561
@@ -191,75 +191,75 @@ RAG, или Retrieval-Augmented Generation, представляет собой 
 10. Top 8 LLM Frameworks for Building AI Agents in 2026 https://www.secondtalent.com/resources/top-llm-frameworks-for-building-ai-agents/
 11. Agentic AI Frameworks: Architectures, Protocols, and Design Challenges https://arxiv.org/html/2508.10146v1
 12. A Comparative Analysis of LangGraph, CrewAI, and AutoGen https://dev.to/foxgem/ai-agent-memory-a-comparative-analysis-of-langgraph-crewai-and-autogen-31dp
-13. AgentAI: A comprehensive survey on autonomous agents ... https://www.sciencedirect.com/science/article/pii/S0957417425020238
-14. AI Agent Frameworks: Why Most Fail and How Parlant ... https://www.linkedin.com/posts/shubhamsaboo_ive-tested-over-20-ai-agent-frameworks-in-activity-7343464757095555072-AhCD
-15. RAG vs. AI Agents: What's the Real Difference and When to ... https://dev.to/kuldeep_paul/rag-vs-ai-agents-whats-the-real-difference-and-when-to-use-each-45eg
+13. AgentAI: A comprehensive survey on autonomous agents … https://www.sciencedirect.com/science/article/pii/S0957417425020238
+14. AI Agent Frameworks: Why Most Fail and How Parlant … https://www.linkedin.com/posts/shubhamsaboo_ive-tested-over-20-ai-agent-frameworks-in-activity-7343464757095555072-AhCD
+15. RAG vs. AI Agents: What's the Real Difference and When to … https://dev.to/kuldeep_paul/rag-vs-ai-agents-whats-the-real-difference-and-when-to-use-each-45eg
 16. A Survey of RAG-Reasoning Systems in LLMs https://arxiv.org/pdf/2507.09477
 17. Retrieval Augmented Generation (RAG) for LLMs https://www.promptingguide.ai/research/rag
 18. AI Hallucination: RAG vs AGI for Reasoning and Retrieval https://www.linkedin.com/posts/babajan_opinion-ai-agi-activity-7392163595486380033-sPF0
-19. AI Agent Memory: The Key to Reliable AI | Richmond Alake ... https://www.linkedin.com/posts/richmondalake_architecting-agent-memory-activity-7345776758417186816-V3Yp
-20. LLM-based Agents Suffer from Hallucinations: A Survey of ... https://arxiv.org/html/2509.18970v1
-21. A survey on large language model based autonomous ... https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40231-1
-22. LLM-based Agents Suffer from Hallucinations: A Survey of ... https://arxiv.org/html/2509.18970v2
-23. Hallucination Detection in Foundation Models for Decision ... https://dl.acm.org/doi/10.1145/3716846
+19. AI Agent Memory: The Key to Reliable AI | Richmond Alake … https://www.linkedin.com/posts/richmondalake_architecting-agent-memory-activity-7345776758417186816-V3Yp
+20. LLM-based Agents Suffer from Hallucinations: A Survey of … https://arxiv.org/html/2509.18970v1
+21. A survey on large language model based autonomous … https://journal.hep.com.cn/fcs/EN/10.1007/s11704-024-40231-1
+22. LLM-based Agents Suffer from Hallucinations: A Survey of … https://arxiv.org/html/2509.18970v2
+23. Hallucination Detection in Foundation Models for Decision … https://dl.acm.org/doi/10.1145/3716846
 24. Large Language Model Agents for Biomedicine https://www.mdpi.com/2078-2489/16/10/894
-25. Agentic AI: A Comprehensive Survey of Architectures ... https://arxiv.org/html/2510.25445v1
-26. The Rise of Agentic AI: A Review of Definitions ... https://www.mdpi.com/1999-5903/17/9/404
+25. Agentic AI: A Comprehensive Survey of Architectures … https://arxiv.org/html/2510.25445v1
+26. The Rise of Agentic AI: A Review of Definitions … https://www.mdpi.com/1999-5903/17/9/404
 27. Популярные проекты с открытым исходным кодом для ИИ-агентов на GitHub в 2025 году: AutoGen, CrewAI, OpenDevin https://www.explinks.com/blog/yt-popular-ai-agents-open-source-projects-on-github-in-2025/
-28. Top 5 AI Agent Frameworks for 2025: LangChain, CrewAI ... https://www.linkedin.com/posts/ramu-goswami-142a851b2_aiagents-langchain-crewai-activity-7392539427144790016-5vQR
+28. Top 5 AI Agent Frameworks for 2025: LangChain, CrewAI … https://www.linkedin.com/posts/ramu-goswami-142a851b2_aiagents-langchain-crewai-activity-7392539427144790016-5vQR
 29. AI Agents vs. Agentic AI: A Conceptual Taxonomy, Applications and Challenges https://arxiv.org/abs/2505.10468
 30. Сравнение фреймворков для создания агентов в 2025 году: руководство по выбору LangGraph, CrewAI и AutoGen. https://blog.csdn.net/m0_59235945/article/details/156304323
 31. Подробный анализ LangGraph! Полное раскрытие возможностей фреймворка https://www.bilibili.com/video/BV1yC1nBCEwr/
 32. An Assessment Framework for Evaluating Agentic AI Systems https://arxiv.org/html/2512.12791v1
-33. The Best Agentic AI Framework Options for Building Multi ... https://dev.to/yeahiasarker/the-best-agentic-ai-framework-options-for-building-multi-agent-systems-in-2025-3l9l
+33. The Best Agentic AI Framework Options for Building Multi … https://dev.to/yeahiasarker/the-best-agentic-ai-framework-options-for-building-multi-agent-systems-in-2025-3l9l
 34. How do AI agents implement multi-step reasoning? https://www.tencentcloud.com/techpedia/126534
-35. Agentic AI: A Comprehensive Survey of Architectures ... https://arxiv.org/html/2510.25445
-36. Interactive Debugging and Steering of Multi-Agent AI ... https://dl.acm.org/doi/10.1145/3706598.3713581
+35. Agentic AI: A Comprehensive Survey of Architectures … https://arxiv.org/html/2510.25445
+36. Interactive Debugging and Steering of Multi-Agent AI … https://dl.acm.org/doi/10.1145/3706598.3713581
 37. How to Build AI Agents: A Practical Roadmap https://www.linkedin.com/posts/shreekant-mandvikar_%F0%9D%90%87%F0%9D%90%A8%F0%9D%90%B0-%F0%9D%90%AD%F0%9D%90%A8-%F0%9D%90%81%F0%9D%90%AE%F0%9D%90%A2%F0%9D%90%A5%F0%9D%90%9D-%F0%9D%90%80%F0%9D%90%88-%F0%9D%90%80%F0%9D%90%A0%F0%9D%90%9E%F0%9D%90%A7%F0%9D%90%AD%F0%9D%90%AC-activity-7390847675555794944-5YG2
-38. AI Architecture Shift: From Scale to Stability | Aaron Sempf ... https://www.linkedin.com/posts/aaron-sempf_for-the-last-decade-weve-treated-ai-progress-activity-7412828285031649280-McFr
-39. A survey on retrieval-augmentation generation (RAG) models ... https://link.springer.com/article/10.1007/s00521-025-11666-9
+38. AI Architecture Shift: From Scale to Stability | Aaron Sempf … https://www.linkedin.com/posts/aaron-sempf_for-the-last-decade-weve-treated-ai-progress-activity-7412828285031649280-McFr
+39. A survey on retrieval-augmentation generation (RAG) models … https://link.springer.com/article/10.1007/s00521-025-11666-9
 40. Retrieval-augmented generation for educational application https://www.sciencedirect.com/science/article/pii/S2666920X25000578
 41. A Survey on Hallucination in Large Language Models https://arxiv.org/pdf/2311.05232
-42. FiDeLiS: Faithful Reasoning in Large Language Models for ... https://aclanthology.org/2025.findings-acl.436.pdf
-43. Engineering the RAG Stack: A Comprehensive Review of ... https://www.researchgate.net/publication/399666509_Engineering_the_RAG_Stack_A_Comprehensive_Review_of_the_Architecture_and_Trust_Frameworks_for_Retrieval-Augmented_Generation_Systems
-44. A Survey on the Memory Mechanism of Large Language ... https://dl.acm.org/doi/10.1145/3748302
-45. MMA-RAG: A Survey on Multimodal Agentic Retrieval- ... https://hal.science/hal-05322313v1/document
-46. TRiSM for Agentic AI: A Review of Trust, Risk, and Security ... https://arxiv.org/html/2506.04133
-47. Alex Salazar on the Architectural Challenges of Tools vs ... https://www.linkedin.com/posts/sampartee_skills-vs-tools-for-ai-agents-production-activity-7405034878720917504-tqXk
+42. FiDeLiS: Faithful Reasoning in Large Language Models for … https://aclanthology.org/2025.findings-acl.436.pdf
+43. Engineering the RAG Stack: A Comprehensive Review of … https://www.researchgate.net/publication/399666509_Engineering_the_RAG_Stack_A_Comprehensive_Review_of_the_Architecture_and_Trust_Frameworks_for_Retrieval-Augmented_Generation_Systems
+44. A Survey on the Memory Mechanism of Large Language … https://dl.acm.org/doi/10.1145/3748302
+45. MMA-RAG: A Survey on Multimodal Agentic Retrieval- … https://hal.science/hal-05322313v1/document
+46. TRiSM for Agentic AI: A Review of Trust, Risk, and Security … https://arxiv.org/html/2506.04133
+47. Alex Salazar on the Architectural Challenges of Tools vs … https://www.linkedin.com/posts/sampartee_skills-vs-tools-for-ai-agents-production-activity-7405034878720917504-tqXk
 48. Multimodal Agent Tuning for Robust Tool-Use Reasoning https://arxiv.org/html/2510.08567v1
-49. AWS Prescriptive Guidance - Agentic AI patterns and ... https://docs.aws.amazon.com/pdfs/prescriptive-guidance/latest/agentic-ai-patterns/agentic-ai-patterns.pdf
+49. AWS Prescriptive Guidance - Agentic AI patterns and … https://docs.aws.amazon.com/pdfs/prescriptive-guidance/latest/agentic-ai-patterns/agentic-ai-patterns.pdf
 50. AI Agent Systems: Architectures, Applications, and Evaluation https://www.researchgate.net/publication/399477505_AI_Agent_Systems_Architectures_Applications_and_Evaluation
 51. Fully Autonomous AI Agents Should Not be Developed https://arxiv.org/html/2502.02649v3
 52. Autonomous AI Agents: Hype or Revolution? https://www.linkedin.com/pulse/autonomous-ai-agents-hype-revolution-jorge-martinez-santiago-iitmf
 53. Measuring Agents in Production https://arxiv.org/html/2512.04123v1
-54. MAESTRO: Multi-Agent Evaluation Suite for Testing, ... https://arxiv.org/pdf/2601.00481
-55. Agent.xpu: Efficient Scheduling of Agentic LLM Workloads ... https://arxiv.org/html/2506.24045v2
-56. An Evaluation of Prompt Caching for Long-Horizon Agentic ... https://arxiv.org/html/2601.06007v1
-57. An Empirical Study of Agent Developer Practices in AI ... https://arxiv.org/html/2512.01939v1
+54. MAESTRO: Multi-Agent Evaluation Suite for Testing, … https://arxiv.org/pdf/2601.00481
+55. Agent.xpu: Efficient Scheduling of Agentic LLM Workloads … https://arxiv.org/html/2506.24045v2
+56. An Evaluation of Prompt Caching for Long-Horizon Agentic … https://arxiv.org/html/2601.06007v1
+57. An Empirical Study of Agent Developer Practices in AI … https://arxiv.org/html/2512.01939v1
 58. A CPU-Centric Perspective on Agentic AI https://arxiv.org/html/2511.00739v1
 59. Agentic Services Computing https://arxiv.org/html/2509.24380v1
-60. The Agent Development Lifecycle: From Conception to ... https://architect.salesforce.com/fundamentals/agent-development-lifecycle
-61. Large Language Models Hallucination: A Comprehensive ... https://arxiv.org/html/2510.06265v2
+60. The Agent Development Lifecycle: From Conception to … https://architect.salesforce.com/fundamentals/agent-development-lifecycle
+61. Large Language Models Hallucination: A Comprehensive … https://arxiv.org/html/2510.06265v2
 62. Rethinking Retrieval-Augmented Generation for LLMs https://arxiv.org/html/2510.09106v1
 63. Руководство по выбору фреймворка для ИИ-агентов к 2025 году: от сравнения технологий до внедрения в производство. https://www.betteryeah.com/blog/ai-agent-framework-selection-guide-2025-enterprise-comparison
-64. Comparing AI agent frameworks: CrewAI, LangGraph, and ... https://developer.ibm.com/articles/awb-comparing-ai-agent-frameworks-crewai-langgraph-and-beeai/
-65. Top AI Agent Frameworks in 2025: LangGraph, CrewAI ... https://www.linkedin.com/posts/keewano_aiagents-agentframeworks-llmtools-activity-7314950091457372160-JhGg
-66. Edge AI: A Taxonomy, Systematic Review and Future ... https://cam.tju.edu.cn/homepage/wuhuaming/PDF/cluster2.pdf
-67. Trustworthy agentic AI systems: a cross-layer review of ... https://f1000research.com/articles/14-905/pdf
-68. A Survey on Autonomy-Induced Security Risks in Large ... https://arxiv.org/html/2506.23844v1
+64. Comparing AI agent frameworks: CrewAI, LangGraph, and … https://developer.ibm.com/articles/awb-comparing-ai-agent-frameworks-crewai-langgraph-and-beeai/
+65. Top AI Agent Frameworks in 2025: LangGraph, CrewAI … https://www.linkedin.com/posts/keewano_aiagents-agentframeworks-llmtools-activity-7314950091457372160-JhGg
+66. Edge AI: A Taxonomy, Systematic Review and Future … https://cam.tju.edu.cn/homepage/wuhuaming/PDF/cluster2.pdf
+67. Trustworthy agentic AI systems: a cross-layer review of … https://f1000research.com/articles/14-905/pdf
+68. A Survey on Autonomy-Induced Security Risks in Large … https://arxiv.org/html/2506.23844v1
 69. Towards a Science of Scaling Agent Systems https://arxiv.org/html/2512.08296v1
 70. A Taxonomy of Hierarchical Multi-Agent Systems https://arxiv.org/html/2508.12683
-71. Is Agentic RAG worth it? An experimental comparison of ... https://www.arxiv.org/pdf/2601.07711
-72. Is Agentic RAG worth it? An experimental comparison of ... https://arxiv.org/html/2601.07711v1
-73. SWARM INTELLIGENCE ARCHITECTURES OF MULTI- ... https://www.academia.edu/37001040/SWARM_INTELLIGENCE_ARCHITECTURES_OF_MULTI_AGENT_SYSTEMS
-74. AI Agent Architecture Patterns in 2025: The Powerful Way ... https://nexaitech.com/multi-ai-agent-architecutre-patterns-for-scale/
+71. Is Agentic RAG worth it? An experimental comparison of … https://www.arxiv.org/pdf/2601.07711
+72. Is Agentic RAG worth it? An experimental comparison of … https://arxiv.org/html/2601.07711v1
+73. SWARM INTELLIGENCE ARCHITECTURES OF MULTI- … https://www.academia.edu/37001040/SWARM_INTELLIGENCE_ARCHITECTURES_OF_MULTI_AGENT_SYSTEMS
+74. AI Agent Architecture Patterns in 2025: The Powerful Way … https://nexaitech.com/multi-ai-agent-architecutre-patterns-for-scale/
 75. ИИ-агент | Анализ трех основных концепций, лежащих в основе концепции интеллектуальных агентов ИИ（CoT, ReAct, Plan-and-Execute) https://blog.csdn.net/m0_56255097/article/details/148867995
 76. Visual comparison of 10 modern agent frameworks and tools https://www.linkedin.com/posts/brijpandeyji_the-agentic-ai-landscape-is-expanding-quickly-activity-7336084745765675008-l48H
-77. Why LangGraph Dominates the Agentic AI Landscape in ... https://www.linkedin.com/posts/nisargkadam_agenticai-langgraph-ai-activity-7394653934633697280-6Oau
-78. The 15 Best AI Agent Tools in 2025: Practical Picks, Clear ... https://bix-tech.com/the-15-best-ai-agent-tools-in-2025-practical-picks-clear-criteria-and-real-world-use-cases/
+77. Why LangGraph Dominates the Agentic AI Landscape in … https://www.linkedin.com/posts/nisargkadam_agenticai-langgraph-ai-activity-7394653934633697280-6Oau
+78. The 15 Best AI Agent Tools in 2025: Practical Picks, Clear … https://bix-tech.com/the-15-best-ai-agent-tools-in-2025-practical-picks-clear-criteria-and-real-world-use-cases/
 79. Agentic AI Empowered Intent-Based Networking for 6G https://arxiv.org/pdf/2601.06640
-80. Evaluating Faithfulness in Agentic RAG Systems for e- ... https://www.mdpi.com/2504-2289/9/12/309
-81. InfiAgent: Self-Evolving Pyramid Agent Framework for ... https://arxiv.org/pdf/2509.22502
+80. Evaluating Faithfulness in Agentic RAG Systems for e- … https://www.mdpi.com/2504-2289/9/12/309
+81. InfiAgent: Self-Evolving Pyramid Agent Framework for … https://arxiv.org/pdf/2509.22502
 82. Safeguarding large language models: a survey - PMC https://pmc.ncbi.nlm.nih.gov/articles/PMC12532640/
 83. Threats in LLM-powered AI agents workflows https://www.sciencedirect.com/science/article/pii/S2405959525001997
 84. Tech Stack of an AI Research Agent: A Comprehensive Guide https://www.linkedin.com/posts/baljeet-singh-oracle-rightnow_devsecops-securedevops-cybersecurity-activity-7360890279257645056-4qpu
