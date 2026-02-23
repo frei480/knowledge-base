@@ -4,13 +4,12 @@ tags:
   - python
 ---
 # Подробный Разбор Принципов GRASP С Примерами На Python
-*Крэг Ларман, 9 принципов для грамотного ООП-дизайна*
+*Крэг Ларман, 9 принципов для грамотного ООП-дизайна* из книги [[Книга «Применение UML и шаблонов проектирования»|Applying UML and Patterns]]
 
 ---
-
 ## Связь Принципов GRASP С Другими Концепциями
 **GRASP vs GoF-паттерны**
-GRASP отвечает на вопрос *«Кому назначить ответственность?»*, а GoF-паттерны дают готовые решения *«Как реализовать эту ответственность?»*.
+GRASP возник как ответ на вопрос распределения ответственности в объектных моделях при анализе требований (Use Case Driven Design) и отвечает на вопрос *«Кому назначить ответственность?»*, а GoF-паттерны дают готовые решения *«Как реализовать эту ответственность?»*.
 
 **GRASP vs [[SOLID принципы|SOLID]]**
 Оба набора принципов направлены на создание гибкого кода:
@@ -20,7 +19,8 @@ GRASP отвечает на вопрос *«Кому назначить отве
 ---
 ## Анализ Взаимосвязей GRASP, SOLID И GoF Паттернов
 
-### 1. Information Expert (Информационный эксперт)
+### A. Назначение ответственности
+#### 1. Information Expert (Информационный эксперт)
 **GoF паттерны**:
 - **Composite (Компоновщик)**: Для иерархических структур
 - **Chain of Responsibility (Цепочка обязанностей)**: Для поэтапной обработки
@@ -62,7 +62,7 @@ print(f"Bundle price: ${bundle.get_price()}")
 - **SOLID**: SRP - каждый класс имеет одну ответственность
 - **GoF**: Composite - иерархия продуктов и наборов
 
-### 2. Creator (Создатель) + Factory Method
+#### 2. Creator (Создатель) + Factory Method
 **GoF паттерны**:
 - **Factory Method (Фабричный метод)**
 - **Abstract Factory (Абстрактная фабрика)**
@@ -120,101 +120,7 @@ create_ui(WindowsUIFactory())
 - **SOLID**: DIP - зависимости от абстракций
 - **GoF**: Abstract Factory - создание семейств объектов
 
-### 3. Low Coupling (Слабое зацепление) + Strategy
-**GoF паттерны**:
-- **Strategy (Стратегия)**
-- **Adapter (Адаптер)**
-
-```python
-from abc import ABC, abstractmethod
-
-# GoF Strategy
-class SortingStrategy(ABC):
-    @abstractmethod
-    def sort(self, data): pass
-
-class QuickSort(SortingStrategy):
-    def sort(self, data):
-        print("Sorting with QuickSort")
-        return sorted(data)
-
-class MergeSort(SortingStrategy):
-    def sort(self, data):
-        print("Sorting with MergeSort")
-        return sorted(data)  # Упрощенная реализация
-
-# Контекст с низкой связностью
-class Sorter:
-    def __init__(self, strategy: SortingStrategy = None):
-        self.strategy = strategy or QuickSort()  # Значение по умолчанию
-    
-    # SOLID OCP: Можно менять стратегию
-    def set_strategy(self, strategy: SortingStrategy):
-        self.strategy = strategy
-    
-    def perform_sort(self, data):
-        return self.strategy.sort(data)
-
-# Использование
-data = [5, 2, 8, 1, 9]
-sorter = Sorter()
-sorter.perform_sort(data)  # QuickSort
-
-sorter.set_strategy(MergeSort())
-sorter.perform_sort(data)  # MergeSort
-```
-
-**Анализ**:
-- **GRASP**: Low Coupling - контекст не зависит от конкретных стратегий
-- **SOLID**: OCP - легко добавлять новые стратегии
-- **GoF**: Strategy - инкапсуляция алгоритмов
-
-### 4. High Cohesion (Высокая связность) + Facade
-**GoF паттерны**:
-- **Facade (Фасад)**
-- **Command (Команда)**
-
-```python
-# Слабо связанные классы с высокой связностью
-class CPU:
-    def process(self):
-        print("Processing data")
-
-class Memory:
-    def load(self):
-        print("Loading data to memory")
-
-class HardDrive:
-    def read(self):
-        print("Reading data from disk")
-
-# GoF Facade
-class ComputerFacade:
-    def __init__(self):
-        self.cpu = CPU()
-        self.memory = Memory()
-        self.hd = HardDrive()
-    
-    # Высокая связность: единая точка входа
-    def start(self):
-        self.hd.read()
-        self.memory.load()
-        self.cpu.process()
-
-# SOLID SRP: Фасад предоставляет простой интерфейс
-def run_computer():
-    computer = ComputerFacade()
-    computer.start()
-
-run_computer()
-```
-
-**Анализ**:
-- **GRASP**: High Cohesion - каждый класс имеет четкую зону ответственности
-- **SOLID**: SRP - классы решают одну задачу
-- **GoF**: Facade - упрощенный интерфейс к сложной системе
-
-### 5. Controller (Контроллер) + Command
+#### 3. Controller (Контроллер) + Command
 **GoF паттерны**:
 - **Command (Команда)**
 - **Mediator (Посредник)**
@@ -265,96 +171,103 @@ remote.press_button()  # Light is ON
 - **SOLID**: DIP - зависимость от абстракции Command
 - **GoF**: Command - инкапсуляция запросов
 
-### 6. Polymorphism (Полиморфизм) + State
+### B. Управление зависимостями
+#### 4. Low Coupling (Слабое зацепление) + Strategy
 **GoF паттерны**:
-- **State (Состояние)**
 - **Strategy (Стратегия)**
+- **Adapter (Адаптер)**
 
 ```python
 from abc import ABC, abstractmethod
 
-# GoF State
-class OrderState(ABC):
+# GoF Strategy
+class SortingStrategy(ABC):
     @abstractmethod
-    def next(self, order): pass
+    def sort(self, data): pass
 
-class NewOrderState(OrderState):
-    def next(self, order):
-        print("Processing new order")
-        order.state = ProcessingState()
+class QuickSort(SortingStrategy):
+    def sort(self, data):
+        print("Sorting with QuickSort")
+        return sorted(data)
 
-class ProcessingState(OrderState):
-    def next(self, order):
-        print("Shipping order")
-        order.state = ShippedState()
+class MergeSort(SortingStrategy):
+    def sort(self, data):
+        print("Sorting with MergeSort")
+        return sorted(data)  # Упрощенная реализация
 
-class ShippedState(OrderState):
-    def next(self, order):
-        print("Order delivered")
-        order.state = DeliveredState()
-
-class Order:
-    def __init__(self):
-        self.state = NewOrderState()  # GRASP Creator
+# Контекст с низкой связностью
+class Sorter:
+    def __init__(self, strategy: SortingStrategy = None):
+        self.strategy = strategy or QuickSort()  # Значение по умолчанию
     
-    # GRASP Polymorphism
-    def next_state(self):
-        self.state.next(self)
-
-# SOLID LSP: Состояния взаимозаменяемы
-order = Order()
-order.next_state()  # Processing
-order.next_state()  # Shipped
-order.next_state()  # Delivered
-```
-
-**Анализ**:
-- **GRASP**: Polymorphism - разные состояния реализуют общий интерфейс
-- **SOLID**: LSP - состояния могут заменять друг друга
-- **GoF**: State - изменение поведения при изменении состояния
-
-### 7. Pure Fabrication (Чистая выдумка) + Adapter
-**GoF паттерны**:
-- **Adapter (Адаптер)**
-- **Proxy (Заместитель)**
-
-```python
-# Внешний сервис с несовместимым интерфейсом
-class LegacyWeatherService:
-    def get_weather_data(self, city, country):
-        return f"Weather for {city}, {country}: 25°C"
-
-# GRASP Pure Fabrication
-class WeatherAdapter:
-    def __init__(self, legacy_service):
-        self.legacy_service = legacy_service
+    # SOLID OCP: Можно менять стратегию
+    def set_strategy(self, strategy: SortingStrategy):
+        self.strategy = strategy
     
-    # GoF Adapter: Адаптация интерфейса
-    def get_forecast(self, location):
-        city, country = location.split(",")
-        return self.legacy_service.get_weather_data(city.strip(), country.strip())
-
-# SOLID ISP: Узкоспециализированный интерфейс
-class WeatherClient:
-    def __init__(self, adapter):
-        self.adapter = adapter
-    
-    def show_weather(self, location):
-        print(self.adapter.get_forecast(location))
+    def perform_sort(self, data):
+        return self.strategy.sort(data)
 
 # Использование
-legacy = LegacyWeatherService()
-adapter = WeatherAdapter(legacy)
-client = WeatherClient(adapter)
-client.show_weather("New York, USA")
+data = [5, 2, 8, 1, 9]
+sorter = Sorter()
+sorter.perform_sort(data)  # QuickSort
+
+sorter.set_strategy(MergeSort())
+sorter.perform_sort(data)  # MergeSort
 ```
 
 **Анализ**:
-- **GRASP**: Pure Fabrication - адаптер не относится к предметной области
-- **SOLID**: ISP - клиент работает с узким интерфейсом
-- **GoF**: Adapter - преобразование интерфейсов
+- **GRASP**: Low Coupling - контекст не зависит от конкретных стратегий
+- **SOLID**: OCP - легко добавлять новые стратегии
+- **GoF**: Strategy - инкапсуляция алгоритмов
 
-### 8. Indirection (Посредник) + Observer
+#### 5. High Cohesion (Высокая связность) + Facade
+**GoF паттерны**:
+- **Facade (Фасад)**
+- **Command (Команда)**
+
+```python
+# Слабо связанные классы с высокой связностью
+class CPU:
+    def process(self):
+        print("Processing data")
+
+class Memory:
+    def load(self):
+        print("Loading data to memory")
+
+class HardDrive:
+    def read(self):
+        print("Reading data from disk")
+
+# GoF Facade
+class ComputerFacade:
+    def __init__(self):
+        self.cpu = CPU()
+        self.memory = Memory()
+        self.hd = HardDrive()
+    
+    # Высокая связность: единая точка входа
+    def start(self):
+        self.hd.read()
+        self.memory.load()
+        self.cpu.process()
+
+# SOLID SRP: Фасад предоставляет простой интерфейс
+def run_computer():
+    computer = ComputerFacade()
+    computer.start()
+
+run_computer()
+```
+
+**Анализ**:
+- **GRASP**: High Cohesion - каждый класс имеет четкую зону ответственности
+- **SOLID**: SRP - классы решают одну задачу
+- **GoF**: Facade - упрощенный интерфейс к сложной системе
+
+
+#### 6. Indirection (Посредник) + Observer
 **GoF паттерны**:
 - **Observer (Наблюдатель)**
 - **Mediator (Посредник)**
@@ -406,7 +319,7 @@ system.create_order({"items": [1, 2, 3]})
 - **SOLID**: OCP - новые подписчики без изменения издателя
 - **GoF**: Observer - механизм подписки/уведомления
 
-### 9. Protected Variations (Защита От изменений) + Bridge
+#### 7. Protected Variations (Защита От изменений) + Bridge
 **GoF паттерны**:
 - **Bridge (Мост)**
 - **Strategy (Стратегия)**
@@ -457,19 +370,110 @@ raster_circle.draw()  # Drawing circle with pixels
 - **SOLID**: DIP - абстракции не зависят от деталей
 - **GoF**: Bridge - разделение абстракции и реализации
 
+### C. Поведенческие механизмы
+
+#### 8. Polymorphism (Полиморфизм) + State
+**GoF паттерны**:
+- **State (Состояние)**
+- **Strategy (Стратегия)**
+
+```python
+from abc import ABC, abstractmethod
+
+# GoF State
+class OrderState(ABC):
+    @abstractmethod
+    def next(self, order): pass
+
+class NewOrderState(OrderState):
+    def next(self, order):
+        print("Processing new order")
+        order.state = ProcessingState()
+
+class ProcessingState(OrderState):
+    def next(self, order):
+        print("Shipping order")
+        order.state = ShippedState()
+
+class ShippedState(OrderState):
+    def next(self, order):
+        print("Order delivered")
+        order.state = DeliveredState()
+
+class Order:
+    def __init__(self):
+        self.state = NewOrderState()  # GRASP Creator
+    
+    # GRASP Polymorphism
+    def next_state(self):
+        self.state.next(self)
+
+# SOLID LSP: Состояния взаимозаменяемы
+order = Order()
+order.next_state()  # Processing
+order.next_state()  # Shipped
+order.next_state()  # Delivered
+```
+
+**Анализ**:
+- **GRASP**: Polymorphism - разные состояния реализуют общий интерфейс
+- **SOLID**: LSP - состояния могут заменять друг друга
+- **GoF**: State - изменение поведения при изменении состояния
+
+#### 9. Pure Fabrication (Чистая выдумка) + Adapter
+**GoF паттерны**:
+- **Adapter (Адаптер)**
+- **Proxy (Заместитель)**
+
+```python
+# Внешний сервис с несовместимым интерфейсом
+class LegacyWeatherService:
+    def get_weather_data(self, city, country):
+        return f"Weather for {city}, {country}: 25°C"
+
+# GRASP Pure Fabrication
+class WeatherAdapter:
+    def __init__(self, legacy_service):
+        self.legacy_service = legacy_service
+    
+    # GoF Adapter: Адаптация интерфейса
+    def get_forecast(self, location):
+        city, country = location.split(",")
+        return self.legacy_service.get_weather_data(city.strip(), country.strip())
+
+# SOLID ISP: Узкоспециализированный интерфейс
+class WeatherClient:
+    def __init__(self, adapter):
+        self.adapter = adapter
+    
+    def show_weather(self, location):
+        print(self.adapter.get_forecast(location))
+
+# Использование
+legacy = LegacyWeatherService()
+adapter = WeatherAdapter(legacy)
+client = WeatherClient(adapter)
+client.show_weather("New York, USA")
+```
+
+**Анализ**:
+- **GRASP**: Pure Fabrication - адаптер не относится к предметной области
+- **SOLID**: ISP - клиент работает с узким интерфейсом
+- **GoF**: Adapter - преобразование интерфейсов
+
 ## Сводная Таблица: GRASP, SOLID И GoF Шаблоны
 
 | GRASP Принцип            | SOLID Принципы                                                                                                                                                                                              | GoF Паттерны                                                                                   | Эффект синергии                      |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------ |
 | **Information Expert**   | [[SOLID принципы#**1. Принцип Единственной Ответственности (SRP)**\|SRP]], [[SOLID принципы#**3. Принцип Подстановки Барбары Лисков (LSP)**\|LSP]]                                                          | [[паттерн composite\|Composite]], [[паттерн Chain of Responsibility\|Chain of Responsibility]] | Локализация ответственности          |
 | **Creator**              | [[SOLID принципы#**1. Принцип Единственной Ответственности (SRP)**\|SRP]], [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]]                                                               | [[паттерн Factory Method\|Factory Method]], [[паттерн Abstract Factory\|Abstract Factory]]     | Контролируемое создание объектов     |
+| **Controller**           | [[SOLID принципы#**2. Принцип открытости/закрытости (OCP)**\|OCP]], [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]]                                                                      | [[паттерн command\|Command]], [[паттерн mediator\|Mediator]]                                   | Обработка системных событий          |
 | **Low Coupling**         | [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]], [[SOLID принципы#**4. Принцип Разделения Интерфейсов (ISP)**\|ISP]], [[SOLID принципы#**2. Принцип открытости/закрытости (OCP)**\|OCP]] | [[паттерн стратегия\|Strategy]], [[паттерн Adapter\|Adapter]]                                  | Гибкость и устойчивость к изменениям |
 | **High Cohesion**        | [[SOLID принципы#**1. Принцип Единственной Ответственности (SRP)**\|SRP]]                                                                                                                                   | [[паттерн Facade\|Facade]], [[паттерн command\|Command]]                                       | Расширяемость обработки запросов     |
-| **Controller**           | [[SOLID принципы#**2. Принцип открытости/закрытости (OCP)**\|OCP]], [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]]                                                                      | [[паттерн command\|Command]], [[паттерн mediator\|Mediator]]                                   | Обработка системных событий          |
-| **Polymorphism**         | [[SOLID принципы#**3. Принцип Подстановки Барбары Лисков (LSP)**\|LSP]], [[SOLID принципы#**2. Принцип открытости/закрытости (OCP)**\|OCP]]                                                                 | [[паттерн стратегия\|Strategy]], [[паттерн State\|State]]                                      | Взаимозаменяемость компонентов       |
-| **Pure Fabrication**     | [[SOLID принципы#**4. Принцип Разделения Интерфейсов (ISP)**\|ISP]], [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]]                                                                     | [[паттерн Adapter\|Adapter]], [[паттерн proxy\|Proxy]]                                         | Упрощение доменной модели            |
 | **Indirection**          | [[SOLID принципы#**2. Принцип открытости/закрытости (OCP)**\|OCP]], [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]]                                                                      | [[паттерн observer\|Observer]], [[паттерн mediator\|Mediator]]                                 | Уменьшение прямых зависимостей       |
 | **Protected Variations** | [[SOLID принципы#**2. Принцип открытости/закрытости (OCP)**\|OCP]], [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]]                                                                      | [[паттерн Bridge\|Bridge]], [[паттерн стратегия\|Strategy]]                                    | Устойчивость к изменениям            |
+| **Polymorphism**         | [[SOLID принципы#**3. Принцип Подстановки Барбары Лисков (LSP)**\|LSP]], [[SOLID принципы#**2. Принцип открытости/закрытости (OCP)**\|OCP]]                                                                 | [[паттерн стратегия\|Strategy]], [[паттерн State\|State]]                                      | Взаимозаменяемость компонентов       |
+| **Pure Fabrication**     | [[SOLID принципы#**4. Принцип Разделения Интерфейсов (ISP)**\|ISP]], [[SOLID принципы#**5. Принцип Инверсии Зависимостей (DIP)**\|DIP]]                                                                     | [[паттерн Adapter\|Adapter]], [[паттерн proxy\|Proxy]]                                         | Упрощение доменной модели            |
 
 ## Заключение: Сила Комбинации Принципов
 
