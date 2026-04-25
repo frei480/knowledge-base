@@ -2,6 +2,8 @@
   "savedFeeds": {},
   "podNotes": {},
   "defaultPlaybackRate": 1,
+  "defaultVolume": 1,
+  "hidePlayedEpisodes": false,
   "playedEpisodes": {},
   "favorites": {
     "icon": "lucide-star",
@@ -20,8 +22,19 @@
   "playlists": {},
   "skipBackwardLength": 15,
   "skipForwardLength": 15,
+  "currentEpisode": {
+    "title": "Компоненты контейнерного стека",
+    "description": "",
+    "content": "",
+    "podcastName": "local file",
+    "url": "[[Компоненты контейнерного стека]]",
+    "streamUrl": "blob:app://obsidian.md/e9683878-f5c8-43b6-9775-578c9716939d",
+    "filePath": "Компоненты контейнерного стека.md",
+    "episodeDate": "2026-04-25T04:50:11.585Z"
+  },
   "timestamp": {
-    "template": "- {{time}} "
+    "template": "- {{time}} ",
+    "offset": 0
   },
   "note": {
     "path": "",
@@ -30,17 +43,46 @@
   "download": {
     "path": ""
   },
-  "downloadedEpisodes": {},
+  "downloadedEpisodes": {
+    "local file": [
+      {
+        "title": "Компоненты контейнерного стека",
+        "description": "",
+        "content": "",
+        "podcastName": "local file",
+        "url": "[[Компоненты контейнерного стека]]",
+        "streamUrl": "blob:app://obsidian.md/e9683878-f5c8-43b6-9775-578c9716939d",
+        "filePath": "Компоненты контейнерного стека.md",
+        "episodeDate": "2026-04-25T04:50:11.585Z",
+        "size": 16018
+      }
+    ]
+  },
   "localFiles": {
     "icon": "folder",
     "name": "Local Files",
     "shouldEpisodeRemoveAfterPlay": false,
     "shouldRepeat": false,
-    "episodes": []
+    "episodes": [
+      {
+        "title": "Компоненты контейнерного стека",
+        "description": "",
+        "content": "",
+        "podcastName": "local file",
+        "url": "[[Компоненты контейнерного стека]]",
+        "streamUrl": "blob:app://obsidian.md/e9683878-f5c8-43b6-9775-578c9716939d",
+        "filePath": "Компоненты контейнерного стека.md",
+        "episodeDate": "2026-04-25T04:50:11.585Z"
+      }
+    ]
   },
   "openAIApiKey": "",
   "transcript": {
     "path": "transcripts/{{podcast}}/{{title}}.md",
     "template": "# {{title}}\n\nPodcast: {{podcast}}\nDate: {{date}}\n\n{{transcript}}"
+  },
+  "feedCache": {
+    "enabled": true,
+    "ttlHours": 6
   }
 }
