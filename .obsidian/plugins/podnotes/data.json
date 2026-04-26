@@ -4,7 +4,15 @@
   "defaultPlaybackRate": 1,
   "defaultVolume": 1,
   "hidePlayedEpisodes": false,
-  "playedEpisodes": {},
+  "playedEpisodes": {
+    "local file::Компоненты контейнерного стека": {
+      "title": "Компоненты контейнерного стека",
+      "podcastName": "local file",
+      "time": 0,
+      "duration": 0,
+      "finished": true
+    }
+  },
   "favorites": {
     "icon": "lucide-star",
     "name": "Favorites",
@@ -28,7 +36,7 @@
     "content": "",
     "podcastName": "local file",
     "url": "[[Компоненты контейнерного стека]]",
-    "streamUrl": "blob:app://obsidian.md/e9683878-f5c8-43b6-9775-578c9716939d",
+    "streamUrl": "blob:app://obsidian.md/a7956823-fa75-40b7-b6b1-867896ef2508",
     "filePath": "Компоненты контейнерного стека.md",
     "episodeDate": "2026-04-25T04:50:11.585Z"
   },
